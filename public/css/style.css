@@ -1,0 +1,153 @@
+header{
+    background-color: black;
+    padding: 10px 0px 45px 0px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    
+}
+footer{
+    background-color: black;
+    padding: 20px 0 20px 0 ;
+    
+    bottom: 0;
+    width: 100%;
+   
+}
+
+body{
+    margin: 0;
+    background-color: rgb(77, 77, 77);
+}
+
+/* #navLinksLeft li{
+    
+} */
+
+#navLinksLeft {
+    display: block;
+   margin-left: 500px;
+}
+#navLinksLeft li
+{
+    display: inline;
+    float: left;
+}
+#navLinksLeft a:not(.icon){
+    border: 1px solid gray;
+    padding: 15px 15px 15px 15px;
+    margin: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+#navLinksLeft .icon{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 25px 18px;
+    
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+#navLinksLeft a:hover{
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+    background-color: rgb(191, 191, 191);
+}
+
+#navLinksLeft a:visited{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+#navLinksRight{
+    display: block;
+    margin-right: 550px;
+}
+
+#navLinksRight li{
+    display: inline;
+    float: right;
+}
+#navLinksRight .icon{
+    padding: 25px 18px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+#navLinksRight a:hover:not(.imageLink){
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+    background-color: rgb(191, 191, 191);
+}
+
+#navLinksRight a:visited:not(.imageLink){
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+} 
+
+.sideBar{
+    
+    background-color: white;
+    position: fixed;
+    right: 0;
+    padding: 50px 150px;
+    padding-bottom: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.sideBar .searchBar{
+    
+    position: absolute;
+    left: 0;
+    width: 90%;
+    top: 0;
+}
+
+.searchBar input{
+    text-align: right;
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid rgb(247, 247, 247);
+}
+
+
+.searchBar input:focus{
+    outline: none;
+}
+
+/* #navLinksRight a{
+    display: inline;
+    position: relative;
+    border: 1px solid gray;
+    left: 500px;
+    padding: 15px 15px 15px 15px;
+    margin: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    
+    transition: 0.3s;
+}
+
+#navLinksRight a:hover{
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+    background-color: rgb(191, 191, 191);
+}
+
+#navLinksRight a:visited{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+} */
