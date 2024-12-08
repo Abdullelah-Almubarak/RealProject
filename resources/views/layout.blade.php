@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         {{-- <link rel="stylesheet" type="text/css" href="{{asset("BootstrapCSS/css/bootstrap.css")}}"> --}}
         <link rel="stylesheet" type="text/css" href="{{asset("css/style.css")}}">
+        <script src="{{asset("js/main.js")}}"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -21,10 +22,8 @@
         </ul>
 
         <ul type=none id="navLinksRight" >
-            <li><a href="#" class="icon"><i class="fa fa-bars"></i></a></li>
+            <li><a href="#" class="icon" id="bars"><i class="fa fa-bars"></i></a></li>
             <li><a href="/layout" class="imageLink"><img src="{{asset("images/5msat.png")}}" height="36" width="144"></a></li>
-            
-            
             
         </ul>
         
@@ -132,7 +131,7 @@
             in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
         
-        
+        <script src="{{asset("js/main.js")}}"></script> 
     </body>
 
     <footer>
@@ -140,5 +139,6 @@
             <li><a href="https://www.youtube.com/watch?v=ylSwcPdDBk0" target="blank">Made By</a></li>
            
         </ul>
-    </footer>        
+    </footer>
+           
 </html>    
