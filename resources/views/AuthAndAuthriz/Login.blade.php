@@ -13,7 +13,7 @@
                     <div class="card-body ">
                         <form id="Login" method="POST" action="{{route("Login.Post")}}">
                             @csrf
-                            <label class="text-bold h3 d-flex justify-content-center d-block mb-5">Login</label>
+                            <label class="text-bold h3 d-flex justify-content-center d-block mb-5">LOGIN</label>
                             
                             <div class="mb-3">
                                 <label for="username" class="fw-bolder">username</label>
