@@ -3,37 +3,80 @@ header{
     padding: 10px 0px 45px 0px;
     position: sticky;
     top: 0;
-    width: 100%;
-    
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    /* gap: 0; */
+    z-index: 2;
+     width: 100%;
+     overflow: hidden;
 }
+
+#auth{
+    background-color: black;
+    padding: 10px 0px 45px 0px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    gap: 0;
+    z-index: 2;
+}
+
 footer{
     background-color: black;
     padding: 20px 0 20px 0 ;
     
     bottom: 0;
     width: 100%;
-   
+   overflow: hidden;
 }
 
 body{
     margin: 0;
     background-color: rgb(77, 77, 77);
+    /* overflow-x: hidden; */
 }
 
 /* #navLinksLeft li{
     
 } */
 
-#navLinksLeft {
-    display: block;
-   margin-left: 500px;
+:root{
+    --vis: hidden;
+    --visPCParts:hidden;
+    --visEX:hidden;
+    --visI:hidden;
 }
-#navLinksLeft li
+
+ #navLinksLeft {
+    
+   display: flex;
+   font-size: 1.18rem;
+   /* margin-bottom: 0;
+    margin-left: 200px; */
+}
+ /* #navLinksLeft li
 {
     display: inline;
     float: left;
-}
-#navLinksLeft a:not(.icon){
+    margin-bottom: 0;
+   
+}  */
+
+
+
+
+
+#navLinksLeft a:not(.icon,.icon-active,.profMen a){
+    
     border: 1px solid gray;
     padding: 15px 15px 15px 15px;
     margin: 10px;
@@ -42,22 +85,83 @@ body{
     transition: 0.3s;
 }
 
+
+
 #navLinksLeft .icon{
+  
     text-decoration: none;
     color: rgb(255, 255, 255);
-    padding: 25px 18px;
-    
-    font-size: 18px;
+    padding: 10rem 1rem;
+    padding-bottom: 2.05rem;
+    cursor: pointer;
+    margin: 0;
+    margin-bottom: 0;
     transition: 0.3s;
 }
 
-#navLinksLeft a:hover{
+#navLinksLeft .icon-active{
+    margin-bottom: 0;
+    margin: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgba(191, 191, 191, 0.49);
+    padding: 10rem 1rem;
+    padding-bottom: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
+.profMen{
+    width: 150px;
+    position: fixed;
+    background-color: white;
+    margin-top:  31px;
+    padding-left: 0;
+    visibility: var(--vis);
+}
+
+.profMen li{
+    font-size: 1.2rem;
+    text-align: right;
+    
+}
+
+.profMen a{
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    padding-right: 15px;
+    padding-left: 20px;
+}
+.profMen li:hover{
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+    background-color: rgb(191, 191, 191);
+    
+}
+
+
+#navLinksLeft .icon-active::after{
+    content: "";
+    position: absolute;
+    display: block;
+    top: 77px;
+    margin-left: 1.3rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(255, 254, 254);
+    visibility: visible;
+}
+
+#navLinksLeft a:hover:not(.icon-active ){
     text-decoration: none;
     color: rgb(255, 254, 254);
     background-color: rgb(191, 191, 191);
 }
 
-#navLinksLeft a:visited{
+#navLinksLeft a:visited:not(.icon-active,.profMen a){
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
@@ -65,25 +169,66 @@ body{
 
 
 
-#navLinksRight{
-    display: block;
-    margin-right: 550px;
-}
+/* #navLinksRight{
+    
+    margin-right: 20%;
+    margin-left: auto;
+}*/
 
-#navLinksRight li{
+#navLinksRight li:not(.pcParts li){
     display: inline;
     float: right;
-}
+    margin-bottom: 0;
+} 
+
 #navLinksRight .icon{
-    padding: 25px 18px;
+    padding: 2rem 18px;
+    padding-bottom: 2.1rem;
     text-decoration: none;
     color: rgb(255, 255, 255);
-    
-    font-size: 18px;
+    cursor: pointer;
+    font-size: 1.27rem;
+    margin-bottom: 0;
+    font-weight: bolder;
     transition: 0.3s;
 }
 
-#navLinksRight a:hover:not(.imageLink){
+#navLinksRight .icon-active{
+    padding: 2rem 18px;
+    padding-bottom: 2.1rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgba(191, 191, 191, 0.49);
+    cursor: pointer;
+    font-size: 1.27rem;
+    font-weight: bolder;
+    transition: 0.3s;
+}
+
+
+#navLinksRight .icon-active::after{
+    content: "";
+    position: absolute;
+    display: block;
+    top: 77px;
+    margin-left: 4.3rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(255, 254, 254);
+    visibility: visible;
+}
+
+#navLinksRight .imageLink{
+    padding-top: 100%;
+    padding-left: 20px;
+    padding-right:20px;
+    padding-bottom: 18px;
+    /* margin: auto; */
+    /* padding-left: 20px;
+    padding-right: 20px; */
+}
+
+#navLinksRight a:hover:not(.imageLink,.icon-active){
     text-decoration: none;
     color: rgb(255, 254, 254);
     background-color: rgb(191, 191, 191);
@@ -94,6 +239,190 @@ body{
     color: rgb(255, 255, 255);
 } 
 
+.pcParts{
+    position: fixed;
+    top: 81px;
+    width: 200px;
+    background-color: white;
+    padding-left: 0;
+    visibility: var(--visPCParts);
+    padding-right: 5px;
+}
+
+.pcParts li{
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: right;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+.pcParts li:hover{
+    
+    
+    background-color: rgb(191, 191, 191);
+}
+
+.pcParts li::before{
+    content: "◄";
+    font-size: 0.5rem; 
+    position: absolute;
+    left: 10px;
+    margin-top: 5px;
+}
+
+.pcParts li:not(:has(ul)):before{
+    content: "";
+    font-size: 0.5rem; 
+    position: absolute;
+    left: 10px;
+    margin-top: 5px;
+}
+
+
+
+.ex{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 81px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+/* .ex li{
+    
+    
+} */
+
+
+
+.ex li::before{
+    content: "";
+}
+
+.exc{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 112px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.exc li::before{
+    content: "";
+}
+
+.exr{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 141px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.exr li::before{
+    content: "";
+}
+
+.exs{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 171px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.exs li::before{
+    content: "";
+}
+
+.exm{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 201px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.exm li::before{
+    content: "";
+}
+
+.exf{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 231px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.exf li::before{
+    content: "";
+}
+
+.expo{
+    position: fixed;
+    width: 230px;
+    background-color: white;
+    margin-left: -230px;
+    top: 261px;
+    padding-left: 0;
+    visibility: var(--visEX);
+}
+
+.expo li::before{
+    content: "";
+}
+
+
+
+/* .pcParts .gpu{
+    font-size: 0.6rem; 
+    position: fixed; 
+    margin-left:-105px
+}
+
+.pcParts .cpu{
+    font-size: 0.6rem; 
+    position: fixed; 
+    margin-left:-122px;
+    
+}
+
+.pcParts .ram{
+    font-size: 0.6rem; 
+    position: fixed; 
+    margin-left:-133px;
+    
+}
+
+.pcParts .moth{
+    font-size: 0.6rem; 
+    position: fixed; 
+    margin-left:-127px;
+    
+}
+
+.pcParts .pws{
+    font-size: 0.6rem; 
+    position: fixed; 
+    margin-left:-113px;
+    
+} */
+
+
 .sideBar{
     background-color: white;
     position: fixed;
@@ -101,17 +430,42 @@ body{
     right: 0;
     /* padding: 50px 150px; */
     padding-bottom: 100%;
+    max-height: calc(100vh - 4rem);
+    
     overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-gutter: auto;
     scrollbar-width: none;
     transition: 0.5s;
 }
 
-.sideBar .searchBar{
+.searchBar{
     
-    position: absolute;
+    position: relative;
     left: 0;
     padding-right: 30px;
     top: 0;
+}
+.searchBar .p-hide{
+    position: absolute;
+    top: 0.4rem;
+    font-size: 0.8rem;
+    left: 1rem;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    color: rgb(66, 104, 175);
+    visibility: hidden;
+}
+
+.searchBar .p-active{
+    position: absolute;
+    top: 0.4rem;
+    font-size: 0.8rem;
+    left: 1rem;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    color: rgb(66, 104, 175);
+    visibility: visible;
 }
 
 .searchBar input{
@@ -122,12 +476,305 @@ body{
     width: 100%;
     border: none;
     border-bottom: 4px solid rgb(247, 247, 247);
+    direction: rtl;
 }
 
 
 .searchBar input:focus{
     outline: none;
 }
+
+/* .searchBar::after {
+    content: "\f00d ";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    top: 5rem;
+    font-size: 0.8rem;
+    left: 1rem;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    color: rgb(66, 104, 175);
+    visibility: visible;
+} */
+
+#shadow{
+    visibility: hidden;
+    position: fixed;
+    background-color: rgba(186, 186, 186, 0.35);
+    width: 100%;
+    height: 100%;
+    transition: 0.1ms;
+}
+
+.arrow{
+    position: fixed;
+    top: 3.15rem;
+    margin-left: 21rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+    visibility: hidden;
+}
+
+/* #searchIcon::after{
+    content: "";
+    position: fixed;
+    top: 3.64rem;
+    margin-left: 20.5rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+    visibility: visible;
+} */
+
+/* #searchIcon::after{
+    content: var(--con,"ddd");
+    position: var(--pos,);
+    top: var(--top,); */
+    /* margin-left: 20.5rem;
+    border-left: var(--brl,);
+    border-right: var(--brr,);
+    border-bottom: var(--brb,);
+    visibility: var(--vis,);
+    background-color: var(--bac,green);
+} */
+
+/* #searchIcon::after{
+    content: "";
+    position: fixed;
+    top: 3.64rem;
+    margin-left: 1.2rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(221, 221, 221);
+    visibility: visible;
+} */
+
+.arrow-active{
+    position: fixed;
+    top: 3.64rem;
+    margin-left: 1.2rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(221, 221, 221);
+    visibility: visible;
+}
+
+
+
+
+.searchHeader {
+    width: 100%;
+    position: fixed;
+    padding-bottom: 1.5rem;
+    padding-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+    transform: translateY(-300%);
+    transition: all 0.1s ease-in-out;
+    z-index: 1;
+}
+
+.searchHeader-active{
+    width: 100%;
+    position: fixed;
+    padding-bottom: 1.5rem;
+    padding-top: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(221, 221, 221);
+    transform: translateY(0%);
+    transition: all 0.1s ease-in-out;
+    z-index: 1;
+}
+.searchDiv{
+    margin-left: 35px;
+    margin-right: 50px;
+}
+
+
+.searchDiv input{
+    text-align: right;
+    font-size: 1.5rem;
+    border: none;
+    background-color: rgb(221, 221, 221);
+    width: 100%;
+    /* border-bottom: 1px solid rgb(247, 247, 247); */
+    direction: rtl;
+}
+
+.searchDiv input:focus{
+    outline: none;
+}
+
+/* #searchHeader2{
+    display: inline;
+    background-color: gray;
+} */
+
+#searchHeader2 i:not(#searchIconHeader2){
+    position: fixed;
+    margin-left: -17px;
+    margin-top: 1px;
+    padding-right: 5px;
+    color: #719ECE;
+    visibility: var(--visI);
+    padding-bottom: 8px;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+
+#searchIconHeader2{
+    position: fixed;
+    /* margin-left: -2px; */
+    margin-top: 0px;
+    /* border-radius: 2px; */
+    font-size: 25px;
+    cursor: pointer;
+    
+    color: #b9b9b9;
+    background: rgb(143, 143, 143);
+    /* visibility: var(--visI); */
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 5px 0 0 5px ;
+}
+/* #searchHeader2 form{
+    margin-left: 300px;
+} */
+
+#searchHeaderInput2{
+    /* position: absolute; */
+    /* padding-right: 200px; */
+    padding-left: 26px;
+    padding-right: 20px;
+    color: rgb(193, 193, 193);
+    /* width: 225px; */
+    width: 400px;
+    font-size: 1.6rem;
+    background-color: rgb(79, 79, 79);
+    border: 2px solid rgb(132, 132, 132);
+    border-radius: 5px;
+    /* direction: rtl; */
+    /* caret-color: red; */
+    /* margin-left: 250px; */
+}
+
+
+#searchHeaderInput2:focus
+{
+    outline: none !important;
+    box-shadow: 0 0 10px #719ECE;
+    /* background-color: red; */
+    /* font-size: 50px; */
+}
+
+/* @media(max-width: 1509px){ */
+    /* #searchHeaderInput2{ */
+    /* position: absolute; */
+    /* padding-right: 200px; */
+    /* padding-right: 20px; */
+    /* color: rgb(193, 193, 193); */
+    /* width: 225px; */
+    /* width: 400px; */
+    /* font-size: 1.6rem;
+    background-color: rgb(79, 79, 79);
+    border: 2px solid rgb(132, 132, 132);
+    border-radius: 5px; */
+    
+    /* caret-color: red; */
+    /* margin-left: 250px; */
+/* }
+} */
+
+
+/* @media(max-width: 1334px),(min-width:1280){
+        #searchHeaderInput2{ */
+            /* position: absolute; */
+            /* padding-right: 200px; */
+            /* padding-right: 20px;
+            color: rgb(193, 193, 193);
+            width: 170px; */
+            /* width: 400px; */
+            /* font-size: 1.6rem;
+            background-color: rgb(79, 79, 79);
+            border: 2px solid rgb(132, 132, 132);
+            border-radius: 5px; */
+            
+            /* caret-color: red; */
+            /* margin-left: 250px; */
+    /* }
+} */
+
+
+ /* @media (max-width: 7680px) {
+    #navLinksRight{
+        
+        margin-right: 20vw;
+        
+    }
+
+    #navLinksLeft {
+        
+       margin-left: 15vw;
+       
+       
+       
+    }
+} 
+
+ @media (max-width: 1920px) {
+    #navLinksRight{
+        
+        margin-right: 10rem;
+        
+    }
+
+    #navLinksLeft {
+        
+       margin-left: 10rem;
+       
+       
+       
+    }
+} 
+
+ @media (max-width: 1280px) {
+    #navLinksRight{
+        
+        margin-right: auto;
+        
+    }
+
+    #navLinksLeft {
+        
+       margin-left: auto;
+       
+       
+       
+    }
+} 
+
+@media (max-width: 991px) {
+    #navLinksRight{
+        
+        margin-right: auto;
+        
+    }
+
+    #navLinksLeft {
+        
+       margin-left: auto;
+       
+       
+       
+    }
+} */
+
+
+
 
 /* #navLinksRight a{
     display: inline;
@@ -152,3 +799,466 @@ body{
     text-decoration: none;
     color: rgb(255, 255, 255);
 } */
+
+
+
+/* LOGIN PAGE*/
+
+#LoginBody body{
+    margin: 0;
+    background-color: rgb(91, 91, 91);
+}
+
+#LoginBody .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+    
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.formHeader{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white !important;
+    margin-bottom:5%;
+    
+    /* border: 90px solid white !important; */
+   
+}
+
+.formHeader h1{
+    color: rgb(111, 111, 111);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+hr{
+    margin: 0;
+    width: 100%;
+}
+
+
+#LoginForm{
+    border: 70px solid white;
+    width: 450px;
+   background-color: white;
+   margin: 0;
+   
+}
+
+
+
+
+#LoginForm form{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+
+
+#Username{
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    padding: 2px;
+    text-align: right;
+    direction: rtl;
+}
+
+.userError{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -22px;
+   direction: rtl;
+   color: red;
+}
+
+.passError{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -8px;
+   direction: rtl;
+   color: red;
+}
+
+
+.LoginError{
+    margin: 0;
+    padding: 0;
+   text-align: center;
+   color: red;
+}
+
+#Pass{
+    margin: 0;
+    font-size: 20px;
+    padding: 2px;
+    text-align: right;
+    direction: rtl;
+}
+
+
+#LoginForm input::placeholder{
+    font-size: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+#LoginForm input::backdrop{
+    background-color: blue;
+}
+
+#Login >label{
+    
+    direction: rtl;
+}
+
+#eye{
+    position: relative;
+    margin: 0;
+    top:-23px;
+    left: 10px;
+    width: 0;
+    cursor: pointer;
+}
+
+.textReq{
+    color: red;
+    
+}
+
+#LoginBtn{
+    margin-top: 10px;
+    width: 150px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    background-image: linear-gradient(to right,rgba(51, 51, 51, 0.348),rgb(96, 96, 96));
+    border: 0;
+}
+
+#LoginBtn:hover{
+    cursor: pointer;
+    
+}
+
+#LoginBtn:active{
+    background-image: linear-gradient(to right,rgba(14, 14, 14, 0.509),rgb(10, 10, 10));
+    
+}
+
+.btnDiv{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.LoginHelp{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.LoginHelp a{
+    text-decoration: none;
+    font-weight: bold;
+}    
+
+.LoginHelp a:visited{
+    text-decoration: none;
+}
+
+
+
+
+/*Register Form*/
+
+
+#RegisterForm{
+    border: 70px solid white;
+    width: 450px;
+   background-color: white;
+   margin: 0;
+   
+}
+
+
+
+
+#RegisterForm form{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.RegisterError{
+    margin: 0;
+    padding: 0;
+   text-align: center;
+   color: red;
+}
+
+#RegisterBody .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+    
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.formHeader{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white !important;
+    margin-bottom:5%;
+    
+    /* border: 90px solid white !important; */
+   
+}
+
+.formHeader h1{
+    color: rgb(111, 111, 111);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+hr{
+    margin: 0;
+    width: 100%;
+}
+
+
+
+
+
+#Username{
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    padding: 2px;
+    text-align: right;
+    direction: rtl;
+}
+
+.userError{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -22px;
+   direction: rtl;
+   color: red;
+}
+
+#Email{
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    padding: 2px;
+    text-align: right;
+    direction: rtl;
+}
+
+.emailError{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -22px;
+   direction: rtl;
+   color: red;
+}
+
+.passError{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -8px;
+   direction: rtl;
+   color: red;
+}
+
+
+.RegisterSuc{
+    margin: 0;
+    padding: 0;
+   text-align: center;
+   color: rgb(59, 209, 36);
+}
+
+#Pass{
+    margin: 0;
+    font-size: 20px;
+    padding: 2px;
+    text-align: right;
+    direction: rtl;
+}
+
+
+#RegisterForm input::placeholder{
+    font-size: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+#RegisterForm input::backdrop{
+    background-color: blue;
+}
+
+#Register >label{
+    
+    direction: rtl;
+}
+
+#eye{
+    position: relative;
+    margin: 0;
+    top:-23px;
+    left: 10px;
+    width: 0;
+    cursor: pointer;
+}
+
+.textReq{
+    color: red;
+    
+}
+
+#RegisterBtn{
+    margin-top: 10px;
+    width: 150px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    background-image: linear-gradient(to right,rgba(51, 51, 51, 0.348),rgb(96, 96, 96));
+    border: 0;
+}
+
+#RegisterBtn:hover{
+    cursor: pointer;
+    
+}
+
+#RegisterBtn:active{
+    background-image: linear-gradient(to right,rgba(14, 14, 14, 0.509),rgb(10, 10, 10));
+    
+}
+
+.btnDiv{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.RegisterHelp{
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    /* justify-content: space-around; */
+    
+}
+
+.RegisterHelp a{
+    text-decoration: none;
+    font-weight: bold;
+}    
+
+.RegisterHelp a:visited{
+    text-decoration: none;
+}
+
+.RegisterHelp p{
+    display: inline;
+} 
+
+/*Register Form Ends*/
+
+
+
+/* #LoginForm span::after{
+    font-family: "Font Awesome 5 Free";
+    content: "\f06e";
+} */
+
+/* #eyeIcon::after{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    content: "\f070";
+} */
+
+.slashEye::after{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    margin: 0;
+    content: "\f070";
+}
+
+.Eye::after{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    margin: 0;
+    content: "\f06e";
+}
+
+/* #slashEyeIcon::after{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    margin: 0;
+    content: "\f070";
+}
+#eyeIcon::after{
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    margin: 0;
+    content: "\f06e";
+} */
+
+
+/*Datat Entry Menu Page*/
+
+.deMenu{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 75px;
+    margin: 100px;
+    flex-direction: row-reverse;
+}
+.deMenu button{
+    margin: 0px;
+    padding: 50px;
+    border: 2px solid rgb(55, 55, 55);
+    border-radius: 10px;
+    font-size: 1.80rem;
+    background: linear-gradient(to right,rgb(68, 89, 195),rgb(75, 61, 154));
+    font-weight: bold;
+}
+/* .deMenu a:first-child button{
+    padding-left: 100px;
+} */
+.deMenu button:active{
+
+    background: linear-gradient(to right,rgb(51, 67, 148),rgb(68, 55, 140));
+}
+.deMenu button:hover{
+    cursor: pointer;
+}
