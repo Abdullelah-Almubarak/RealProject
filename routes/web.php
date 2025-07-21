@@ -15,13 +15,21 @@ Route::get('/', function () {
 
     $products= DB::table("product")->get();
     $product_images=DB::table("product_images")->get();
-    return view('welcome',compact("products","product_images"));
+    return view('index',compact("products","product_images"));
+});
+
+Route::get("item",function(Product $product){
+        // dd($products);
+        // $item=DB::table("product")->get()->where("product_name","=",$product->product_name)->first();
+        
+        return view("item",compact("product"));
 });
 
 Route::get("item/{product}",function(Product $product){
         // dd($products);
         // $item=DB::table("product")->get()->where("product_name","=",$product->product_name)->first();
-        return view("item",compact("product"));
+        $product_img=DB::table("product_images")->get()->where("product_id","=",$product->id);
+        return view("item",compact("product","product_img"));
 });
 
 // Route::get("item/{product}",[itemController::class,"show"]);
