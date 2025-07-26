@@ -18,6 +18,13 @@ for(i=0;i<adsSlider.childElementCount;i++)
     if(adsSlider.children[i].tagName=="A")
     {
         adsImgCounter+=1;
+        adsSlider.children[i].addEventListener("click",function(e){
+            if(drag==null)
+            {
+                e.preventDefault
+            }
+            
+        });
         curAdImg.push(adsSlider.children[i].id);
     }
     // console.log(curAdImg.length);
@@ -80,6 +87,7 @@ function rightScroll(){
         // })
         // console.log("yes");
     }
+    drag=null;
     nexImg+=1;
     
 };
@@ -114,6 +122,7 @@ function leftScroll(){
         adsSlider.scrollLeft-=adsSlider.scrollWidth/5;
         
     }
+    drag=null;
     prevImg-=1;
 };
 
