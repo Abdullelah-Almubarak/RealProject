@@ -34,7 +34,8 @@
             
             @foreach ($product_img as $img)
                 
-                <img src="{{asset("storage/$img->image_name")}}" alt="">
+                <img src="{{asset("storage/$img->image_name")}}" >
+                {{-- <img src="{{asset("storage/$img->image_name")}}" alt="" class="zoom"> --}}
                 @break
                
             @endforeach
@@ -78,6 +79,10 @@
             <p>{{$product->product_desc}}</p>
         </div>
     </div>
+
+    {{-- <div class="mobile">
+        
+    </div> --}}
 
     @section("exJS",asset("js/itemInfo.js"))
 @stop
