@@ -380,6 +380,97 @@
 }
 
 
+
+.hide{
+    display: none;
+}
+
+.mobZoom{
+    position: fixed;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.793);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.mobSlider{
+     display: flex;
+
+    -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+     -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* aspect-ratio: 16/9; */
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+     /* margin: 0; */
+     
+
+}
+
+.mobSlider img{
+     flex: 1 0 100%;
+   
+    
+    scroll-snap-align: start;
+     -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+    object-fit: contain;
+    /* margin: 15px; */
+    /* margin-top: auto;
+    margin-bottom: auto; */
+    margin: auto;
+    padding: 0;
+    /* margin-top: 15px;
+    margin-bottom: 15px; */
+    /* gap: 10rem; */
+    width: 100%;
+    height: 50%;
+    /* transform: scale3d(1,1,1); */
+    /* gap: 10rem; */
+    /* height: 150px; */
+}
+
+.scrollDis{
+    overflow: hidden;
+}
+
+.mobIcons ul{
+    position: fixed;
+    display: flex;
+    left: 0;
+    gap: 1rem;
+    font-size: 1.3rem;
+    color: white;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.mobIcons li:hover{
+    cursor: pointer;
+    color: cornflowerblue;
+}
+
 @media only screen and (max-width:700px){
     /* .container{
         grid-template-columns: repeat(1,5rem);
