@@ -5,10 +5,21 @@ var prev=document.getElementsByClassName("prev")[0];
 var images=slider.getElementsByTagName("img");
 var imgProd=document.getElementsByClassName("info2")[0];
 var curImg=imgProd.getElementsByTagName("img")[0];
+var body=document.getElementsByTagName("body")[0];
+var mobZoom=document.getElementsByClassName("mobZoom")[0];
+var mobSlider=document.getElementsByClassName("mobSlider")[0]
+var remove=document.getElementById("remove");
+var zoomIn=document.getElementById("zoomIn");
+var zoomOut=document.getElementById("zoomOut");
+var mobIcons=document.getElementsByClassName("mobIcons")[0];
+var arrowSlider=document.getElementById("arrows");
 
-
-
-
+var imagesValues=[];
+// alert(slider.childElementCount)
+if(slider.childElementCount<2)
+{
+    arrowSlider.classList.toggle("hide");
+}
 // var r=document.querySelector(":root");
 // var rs=getComputedStyle(r);
 // r.style.setProperty('--img', "url("+curImg.src.toString()+")");
@@ -26,11 +37,13 @@ var drag;
 for(i=0;i<images.length;i++)
 {
     images[i].data=images[i].src;
+    imagesValues.push(images[i]);
     // alert(images[i].data);
     images[i].addEventListener("click",function x(e){
         if(drag==false)
         {
             curImg.src=this.data;
+            curImg.data=this.data
             zoomImg=this.data;
             // console.log(drag);
         }
@@ -81,7 +94,7 @@ curImg.addEventListener("mouseleave",function(e){
     // this.style.backgroundPosition= x + '% ' + y + '%';
     this.src=zoomImg;
     curImg.style.cssText = "";
-    e.removeAttribute("style");
+    // e.removeAttribute("style");
     // this.style.opacity=0;
     // this.style.zIndex=-1;
     // zoomImg.style.zIndex=5;
@@ -104,6 +117,29 @@ curImg.addEventListener("mouseout",function(e){
 });
 
 //End Zoom Image
+
+
+//Fullscreen Zoom (Mobile Zoom)
+
+curImg.addEventListener("click",function(e){
+    mobZoom.classList.toggle("hide");
+    mobIcons.classList.toggle("hide");
+    body.classList.toggle("scrollDis");
+    var ent=Object.values(images);
+    var ind=ent.findIndex(ent=>ent.data==zoomImg);
+    // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+    mobSlider.children[ind].scrollIntoView({behavior:"instant"});
+})
+
+//End FullScreen Zoom (Mobile Zoom)
+
+
+remove.addEventListener("click",function(e){
+    mobZoom.classList.toggle("hide");
+    mobIcons.classList.toggle("hide");
+    body.classList.toggle("scrollDis")
+})
+
 
 wrap.addEventListener("touchstart",function(e){
     slideX=e.touches[0].pageX;
