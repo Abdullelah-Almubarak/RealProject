@@ -34,7 +34,7 @@
             
             @foreach ($product_img as $img)
                 
-                <img src="{{asset("storage/$img->image_name")}}" >
+                <img src="{{asset("storage/$img->image_name")}}">
                 {{-- <img src="{{asset("storage/$img->image_name")}}" alt="" class="zoom"> --}}
                 @break
                
@@ -42,18 +42,17 @@
 
 
             <div class="wrapper">
-                <div class="slider">
+                <div class="slider ">
                     @foreach ($product_img as $img)
                     
-                        <img src="{{asset("storage/$img->image_name")}}" alt="">
-
+                        <img src="{{asset("storage/$img->image_name")}}">                    
                     @endforeach
 
                     
                     
                 </div>
 
-                 <div>
+                 <div id="arrows">
                         <p  class="next">
                             <span class="arrowImg right "></span>
                         </p>
@@ -80,9 +79,24 @@
         </div>
     </div>
 
-    {{-- <div class="mobile">
-        
-    </div> --}}
+    <div class="mobZoom hide">
+        <div class="mobSlider">
+             @foreach ($product_img as $img)
+                
+                <img src="{{asset("storage/$img->image_name")}}">
+                
+               
+            @endforeach
+        </div>
+    </div>
+
+    <div class="mobIcons hide">
+        <ul type="none">
+            <li id="remove"><i class="fa fa-times" aria-hidden="true"></i></li>
+            <li id="zoomIn"><i class="fa fa-search-plus" aria-hidden="true"></i></li>
+            <li id="zoomOut"><i class="fa fa-search-minus" aria-hidden="true"></i></li>
+        </ul>
+    </div>
 
     @section("exJS",asset("js/itemInfo.js"))
 @stop
