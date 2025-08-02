@@ -83,7 +83,10 @@
         <div class="mobSlider">
              @foreach ($product_img as $img)
                 
+             <div class="imgCont">
                 <img src="{{asset("storage/$img->image_name")}}">
+             </div>
+                
                 
                
             @endforeach
