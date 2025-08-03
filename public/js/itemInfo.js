@@ -14,13 +14,12 @@ var zoomIn=document.getElementById("zoomIn");
 var zoomOut=document.getElementById("zoomOut");
 var mobIcons=document.getElementsByClassName("mobIcons")[0];
 var arrowSlider=document.getElementById("arrows");
-
+var mobArrow=document.getElementsByClassName("mobArrow")[0];
 var imagesValues=[];
+var mobNext=document.getElementsByClassName("mobNext")[0];
+var mobPrev=document.getElementsByClassName("mobPrev")[0];
 // alert(slider.childElementCount)
-if(slider.childElementCount<2)
-{
-    arrowSlider.classList.toggle("hide");
-}
+
 // var r=document.querySelector(":root");
 // var rs=getComputedStyle(r);
 // r.style.setProperty('--img', "url("+curImg.src.toString()+")");
@@ -33,8 +32,17 @@ if(slider.childElementCount<2)
 
 var zoomImg=curImg.src;
 var slideX=0;
+var mobSlideX=0;
 var drag;
 var scale=1;
+var zoomIndex=0;
+var mobDrag;
+var fullImgScroll=false;
+
+if(slider.childElementCount<2)
+{
+    arrowSlider.classList.toggle("hide");
+}
 
 //For Slide Images
 for(i=0;i<images.length;i++)
@@ -88,10 +96,35 @@ function prevImg(){
     drag=null;
 }
 
+function nextFullImg(){
+    // console.log(mobDrag)
+     if(zoomIndex<mobSlider.childElementCount-1 && scale==1 && fullImgScroll==false)
+    {
+        
+        zoomIndex+=1;
+        // console.log("zoo,Ind next: ",zoomIndex);
+        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+        // mobSlider.children[zoomIndex].scrollIntoView({behavior:"instant"});
+        mobSlider.scrollLeft+=mobSlider.scrollWidth/5;
+        mobDrag=null;
+    }
+};
+
+
+function prevFullImg(){
+    if(zoomIndex!=0 && scale==1 && fullImgScroll==false)
+    {
+        zoomIndex-=1;
+        // console.log("zoo,Ind prev: ",zoomIndex);
+
+        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+        // mobSlider.children[zoomIndex].scrollIntoView({behavior:"instant"});
+        mobSlider.scrollLeft-=mobSlider.scrollWidth/5;
+        mobDrag=null;
+    }
+};
 
 //Zoom Image
-
-
 
 
 curImg.addEventListener("mousemove",function(e){
@@ -109,8 +142,6 @@ curImg.addEventListener("mousemove",function(e){
 });
 
 
-//For Zoom Image
-
 curImg.addEventListener("mouseleave",function(e){
     // e.offsetX? ofx=e.offsetX:0;
     // e.offsetY? ofy=e.offsetY:0;
@@ -125,59 +156,6 @@ curImg.addEventListener("mouseleave",function(e){
     // zoomImg.style.zIndex=5;
 });
 
-//For Zoom Image
-
-zoomIn.addEventListener("click",function(e){
-    scale+=0.2;
-    var ent=Object.values(images);
-    var ind=ent.findIndex(ent=>ent.data==zoomImg);
-    // console.log(ent.findIndex(ent=>ent.data==zoomImg));
-    mobSlider.children[ind].style.scale=scale;
-    // curImg.style.scale+=0.5;
-})
-
-zoomOut.addEventListener("click",function(e){
-    console.log(scale);
-    if(scale>=1.1)
-    {
-        
-        scale-=0.2;
-        var ent=Object.values(images);
-        var ind=ent.findIndex(ent=>ent.data==zoomImg);
-        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
-        mobSlider.children[ind].style.scale=scale;
-    }
-    
-    // curImg.style.scale-=0.5;
-})
-
-mobSlider.addEventListener("click",function(e){
-    if(e.target.classList.contains("imgCont"))
-    {
-         mobZoom.classList.toggle("hide");
-        mobIcons.classList.toggle("hide");
-        body.classList.toggle("scrollDis")
-        var ent=Object.values(images);
-        var ind=ent.findIndex(ent=>ent.data==zoomImg);
-        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
-        mobSlider.children[ind].removeAttribute("style");
-        scale=1;
-    }
-})
-
-mobSlider.children[0].addEventListener("click",function(e){
-    
-    //  mobZoom.classList.toggle("hide");
-    // mobIcons.classList.toggle("hide");
-    // body.classList.toggle("scrollDis")
-    //  var ent=Object.values(images);
-    // var ind=ent.findIndex(ent=>ent.data==zoomImg);
-    // // console.log(ent.findIndex(ent=>ent.data==zoomImg));
-    // mobSlider.children[ind].removeAttribute("style");
-    // scale=1;
-        // console.log(this.parentNode)
-
-})
 
 curImg.addEventListener("mouseout",function(e){
     // e.offsetX? ofx=e.offsetX:0;
@@ -196,31 +174,119 @@ curImg.addEventListener("mouseout",function(e){
 //End Zoom Image
 
 
-//Fullscreen Zoom (Mobile Zoom)
+
+
+//FullScreen Zoom (Mobile Zoom)
+
+zoomIn.addEventListener("click",function(e){
+    
+    scale+=0.2;
+    // var ent=Object.values(images);
+    // var ind=ent.findIndex(ent=>ent.data==zoomImg);
+    // console.log(zoomIndex);
+    // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+    mobSlider.children[zoomIndex].style.scale=scale;
+    // curImg.style.scale+=0.5;
+})
+
+zoomOut.addEventListener("click",function(e){
+    // console.log(scale);
+    if(scale>=1.1)
+    {
+        
+        scale-=0.2;
+        // var ent=Object.values(images);
+        // var ind=ent.findIndex(ent=>ent.data==zoomImg);
+        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+        mobSlider.children[zoomIndex].style.scale=scale;
+    }
+    
+    // curImg.style.scale-=0.5;
+})
+
+mobSlider.addEventListener("click",function(e){
+    if(e.target.classList.contains("imgCont") && mobDrag==false)
+    {
+         mobZoom.classList.toggle("hide");
+        mobIcons.classList.toggle("hide");
+        mobArrow.classList.toggle("hide");
+        body.classList.toggle("scrollDis")
+        var ent=Object.values(images);
+        var ind=ent.findIndex(ent=>ent.data==zoomImg);
+        // console.log(ent.findIndex(ent=>ent.data==zoomImg));
+        mobSlider.children[ind].removeAttribute("style");
+        zoomIndex=null;
+        mobDrag=null;
+        scale=1;
+    }
+})
+
+mobSlider.addEventListener("scroll",function(e){
+    // console.log("scroll")
+    fullImgScroll=true;
+})
+
+mobSlider.addEventListener("scrollend",function(e){
+    // console.log("scroll ends")
+    fullImgScroll=false
+})
 
 curImg.addEventListener("click",function(e){
     mobZoom.classList.toggle("hide");
     mobIcons.classList.toggle("hide");
+    mobArrow.classList.toggle("hide");
     body.classList.toggle("scrollDis");
     var ent=Object.values(images);
     var ind=ent.findIndex(ent=>ent.data==zoomImg);
+    zoomIndex=ind;
+    // console.log("click img: ",zoomIndex);
     // console.log(ent.findIndex(ent=>ent.data==zoomImg));
     mobSlider.children[ind].scrollIntoView({behavior:"instant"});
 })
 
-//End FullScreen Zoom (Mobile Zoom)
+
+mobSlider.addEventListener("mousedown",function(e){
+    
+    mobSlideX=e.pageX;
+    mobDrag=false;
+    // console.log("ffff")
+})
+
+
+
+mobSlider.addEventListener("mousemove",function(e){
+    
+    if(mobDrag==false)
+    {
+        mobDrag=true;
+    }
+    // console.log("ffgg")
+})
+
+mobNext.addEventListener("click",nextFullImg);
+
+
+mobPrev.addEventListener("click",prevFullImg);
 
 
 remove.addEventListener("click",function(e){
     mobZoom.classList.toggle("hide");
     mobIcons.classList.toggle("hide");
+    mobArrow.classList.toggle("hide");
     body.classList.toggle("scrollDis")
      var ent=Object.values(images);
     var ind=ent.findIndex(ent=>ent.data==zoomImg);
     // console.log(ent.findIndex(ent=>ent.data==zoomImg));
     mobSlider.children[ind].removeAttribute("style");
+    zoomIndex=null;
+    mobDrag=null
     scale=1;
 })
+
+//End FullScreen Zoom (Mobile Zoom)
+
+
+
 
 
 wrap.addEventListener("touchstart",function(e){
@@ -282,6 +348,16 @@ document.addEventListener("mouseup",function(e){
     else if(e.pageX<slideX && drag==true)
     {
        nextImg();
+    }
+    else if(e.pageX>mobSlideX && mobDrag==true)
+    {
+        // console.log("doc",e.pageX,mobSlideX ,mobDrag);
+        prevFullImg();
+    }
+    else if(e.pageX<mobSlideX && mobDrag==true)
+    {
+        // console.log("doc");
+        nextFullImg();
     }
 })
 

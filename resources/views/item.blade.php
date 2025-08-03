@@ -100,6 +100,16 @@
             <li id="zoomOut"><i class="fa fa-search-minus" aria-hidden="true"></i></li>
         </ul>
     </div>
+    
+    <div class="mobArrow hide">
+        <p  class="mobNext">
+            <span class="arrowImg mobRight "></span>
+        </p>
+                                
+        <p  class="mobPrev">
+            <span class="arrowImg mobLeft"></span>
+        </p>
+    </div>
 
     @section("exJS",asset("js/itemInfo.js"))
 @stop
