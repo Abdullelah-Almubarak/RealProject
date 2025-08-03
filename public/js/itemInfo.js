@@ -235,7 +235,7 @@ curImg.addEventListener("click",function(e){
     mobZoom.classList.toggle("hide");
     mobIcons.classList.toggle("hide");
     mobArrow.classList.toggle("hide");
-    body.classList.toggle("scrollDis");
+    body.classList.toggle("scrollDis"); 
     var ent=Object.values(images);
     var ind=ent.findIndex(ent=>ent.data==zoomImg);
     zoomIndex=ind;
