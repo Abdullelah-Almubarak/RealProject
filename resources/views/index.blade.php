@@ -6,23 +6,23 @@
     <div id="adsContainer">
         <div id="adsSlider-wraper">
             <div id="adsSlider">
-                <a href="/login" id="adI1">
+                <a id="adI1">
                     <img  src="{{asset("storage/ProductImages/banner_ar_001_278_38775226.webp")}}" alt="image" title="big face" height="750">
 
                 </a>
-                <a href="/register"  id="adI2" >
+                <a id="adI2" >
                     <img src="{{asset("storage/ProductImages/banner_ar_001_320_89382959.webp")}}" alt="image" title="cirno" height="750">
 
                 </a>
-                <a href="/" id="adI3">
+                <a id="adI3">
                     <img  src="{{asset("storage/ProductImages/banner_ar_001_326_56575682.JPEG")}}" alt="image" height="750">
 
                 </a>
-                <a href="" id="adI4">
+                <a id="adI4">
                     <img  src="{{asset("storage/ProductImages/banner_ar_001_330_88728218.webp")}}" alt="image" height="750">
 
                 </a>
-                <a href="" id="adI5">
+                <a id="adI5">
                     <img  src="{{asset("storage/ProductImages/banner_en_US_332_39616345.webp")}}" alt="image" height="750">
 
                 </a>
@@ -30,11 +30,11 @@
 
 
                     <div>
-                        <a href="#" class="next">
+                        <a  class="next">
                             <span class="arrowImg right"></span>
                         </a>
                         
-                        <a href="#" class="prev">
+                        <a  class="prev">
                             <span class="arrowImg left"></span>
                         </a>
                     </div>
