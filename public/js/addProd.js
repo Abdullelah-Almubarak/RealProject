@@ -1,5 +1,5 @@
 var imageInput=document.getElementById("prodImage");
-var formProdcut=document.getElementById("addProduct");
+// var formProdcut=document.getElementById("addProduct");
 var count=0;
 var dicImages={};
 
@@ -12,12 +12,158 @@ var prodPrice=document.getElementById("prodPrice");
 var prodDesc=document.getElementById("prodDesc");
 var prodAV=document.getElementById("avButton");
 
+var gpu=document.getElementById("gpus");
+
 prodQuantity.pattern="[0-9]";
 prodPrice.pattern="[0-9]";
 
 var addDiv=document.getElementsByClassName("addProd")[0];
 var mes=document.createElement("h1");
 
+var pcPartsBT=document.getElementById("pr");
+var pcAccoBT=document.getElementById("ac");
+var partsType=document.getElementsByClassName("parts")[0];
+var gpuCompany=document.getElementById("gpuCompany");
+var gpuBrand=document.getElementById("gpuBrand");
+var compList=document.getElementById("compList");
+var companySearch=document.getElementById("companySearch");
+
+var hr=document.createElement("hr");
+    hr.id="prHR";
+
+    var compVal=document.getElementById("compVal");
+
+
+    
+
+compList.getElementsByTagName("p")[0].addEventListener("click",function(e){
+    compVal.placeholder=this.innerText;
+    // compVal.value=this.innerText;
+    compVal.data=this.innerText;
+    if(gpuBrand.length>1)
+    {
+        var brandLength=gpuBrand.length;
+        for(i=1;i<brandLength;i++)
+        {
+            gpuBrand.children[1].remove();
+        }
+                            
+    }
+});
+
+gpu.addEventListener("change",function(e){
+    fetch("js/companyInfo.json")
+    .then(res=>res.json())
+    .then(res=>{
+        console.log(res[gpu.id]["Nvidia"][0]);
+        for(i=0;i<res.gpu.length;i++)
+        {
+            
+            var op=document.createElement("p");
+            op.innerText=res.gpu[i];
+            op.data=res.gpu[i].toLowerCase();
+            // console.log(res.gpu[i]);
+            op.addEventListener("click",function(e){
+                // compVal.value=this.innerText;
+                compVal.data=this.innerText;
+                compVal.placeholder=this.innerText;
+
+                 if(compVal.data=="Nvidia")
+                {
+                    fetch("js/companyInfo.json")
+                    .then(res=>res.json())
+                    .then(res=>{
+                        if(gpuBrand.length>1)
+                        {
+                            var brandLength=gpuBrand.length;
+                            for(i=1;i<brandLength;i++)
+                            {
+                                gpuBrand.children[1].remove();
+                            }
+
+                            for(i=0;i<res.nvidia_brand.length;i++)
+                            {
+                                var op=document.createElement("option");
+                                op.value=res.nvidia_brand[i];
+                                op.innerText=res.nvidia_brand[i];
+                                gpuBrand.appendChild(op);
+                            }
+                        }
+                        else
+                        {
+                            for(i=0;i<res.nvidia_brand.length;i++)
+                            {
+                                var op=document.createElement("option");
+                                op.value=res.nvidia_brand[i];
+                                op.innerText=res.nvidia_brand[i];
+                                gpuBrand.appendChild(op);
+                            }
+                        }
+                        
+                    })
+                }
+                else if(compVal.data=="AMD")
+                {
+                    if(gpuBrand.length>1)
+                        {
+                            var brandLength=gpuBrand.length;
+                            for(i=1;i<brandLength;i++)
+                            {
+                                
+                                gpuBrand.children[1].remove();
+                            }
+                            
+                        }
+                }
+                else if(compVal.data=="")
+                {
+                    if(gpuBrand.length>1)
+                        {
+                            var brandLength=gpuBrand.length;
+                            for(i=1;i<brandLength;i++)
+                            {
+                                gpuBrand.children[1].remove();
+                            }
+                            
+                        }
+                }
+
+                // alert(prodName.value);
+            });
+            compList.appendChild(op);
+           
+        }
+        
+    });
+    
+});
+
+
+companySearch.addEventListener("input",function(e){
+    var comLen=compList.childElementCount;
+    // console.log(compList.childElementCount);
+    for(i=2;i<compList.childElementCount;i++)
+    {
+        if(!compList.children[i].data.includes(companySearch.value.toLowerCase()))
+        {
+            compList.children[i].classList.add("hide");
+        }
+        else
+        {
+            compList.children[i].classList.remove("hide");
+        }
+    }
+    // console.log(companySearch.value.includes("n"));
+})
+
+
+
+gpuCompany.addEventListener("click",function(e){
+    if(e.target.id!="companySearch")
+    {
+        compList.classList.toggle("hide");
+    }
+});
 // if(document.contains(document.getElementsByClassName("error")[0]))
 // {   
 //     document.getElementsByClassName("error")[0].classList.add("success");
@@ -315,12 +461,17 @@ imageInput.addEventListener("change",function(e){
 });
 
 
-form.addEventListener("submit",function(e){
+
+
+
+form.addEventListener("submit",function x(e){
     var imgCont=Object.keys(dicImages).length;
-    if(prodName.value=="" || (prodQuantity.value=="" || prodQuantity.value<=0) || (prodPrice.value=="" || prodPrice.value<=0) || prodDesc=="" || imgCont==0)
+    
+
+    if(prodName.value=="" || (prodQuantity.value=="" || prodQuantity.value<=0) || (prodPrice.value=="" || prodPrice.value<=0) || prodDesc.value=="" || imgCont==0)
     {
         e.preventDefault();
-        console.log("name: ",prodName.value=="",
+       console.log("name: ",prodName.value=="",
             "\n quantity: ",prodQuantity.value.match("[A-Z]"),
             "\n Price: ",prodPrice.value=="",
             "\n Desc: ",prodDesc.value=="",
@@ -328,9 +479,7 @@ form.addEventListener("submit",function(e){
         );
         return;
     }
-    
-     e.preventDefault();
-    
+    e.preventDefault();
     // var fo=new FormData(form);
     formdata.append("_token",document.querySelector('input[name=_token]').value)
     formdata.append("prodName",prodName.value);
@@ -374,7 +523,9 @@ form.addEventListener("submit",function(e){
         //     // 'url': '/addProd',
         //     // "X-CSRF-Token": document.querySelector('input[name=_token]').value
         // }
+        
     })
+    
     .then(res=>{
         if(!res.ok)
         {
@@ -451,4 +602,14 @@ form.addEventListener("submit",function(e){
         return console.log(er);
         
     })
+    
+
+});
+
+document.addEventListener("click",e=>{
+    // console.log(e.target.parentNode.parentNode.id);
+    if(e.target.id!="compVal" && e.target.id!="companySearch" && !compList.classList.contains("hide"))
+    {
+        compList.classList.add("hide");
+    }
 })
