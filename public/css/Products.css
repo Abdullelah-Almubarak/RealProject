@@ -6,6 +6,8 @@ body{
     --visM:hidden;
 }
 
+
+
 .addProd{
 
     margin-top: 20px;
@@ -40,20 +42,20 @@ body{
     padding: 0 5px 3px 5px;
 }
 
-.container label{
+.container label:not(.parts label,.acco label, .sel label){
     font-weight: bold;
     direction: rtl;
     font-size: 1.6rem;
 }
 
-.container label:not(.dropImage)::after
+.container label:not(.dropImage,.parts label,.acco label, .sel label)::after
 {
     content: " هذا الحقل مطلوب";
     color: red;
     visibility: var(--visM);
 }
 
-.container input[type=text] ,input[type=number]{
+.container  input[type=text] ,input[type=number]{
     direction: rtl;
     font-size: 1.5rem;
     
@@ -139,6 +141,163 @@ body{
     cursor: pointer;
 }
 
+.prodType{
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.prodType label{
+    margin-left: 100px;
+}
+
+.prodType :hover:not(:first-child){
+    cursor: pointer;
+}
+
+.prodType input:hover{
+    cursor: pointer;
+}
+
+.parts{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.parts legend{
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.parts label{
+    /* display: inline-block;
+    position: relative; */
+    font-size: 1.6rem;
+    direction: rtl;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.parts label:hover ,.parts input:hover{
+    cursor: pointer;
+}
+
+.acco{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 15px;
+}
+
+.acco legend{
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.acco label{
+    /* display: inline-block;
+    position: relative; */
+    font-size: 1.6rem;
+    direction: rtl;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.acco label:hover ,.acco input:hover{
+    cursor: pointer;
+}
+
+.sel{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.sel label
+{
+    text-align: right;
+    direction: rtl;
+    font-size: 1.6rem;
+}
+
+.sel span{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#gpuCompany{
+    
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    z-index: 5;
+    /* border: 1px solid;
+    border-bottom: 5px solid; */
+}
+
+#gpuCompany p{
+    margin: 0;
+    /* border: 1px solid; */
+    border-right:1px solid ;
+    border-left: 1px solid;
+    padding: 5px;
+}
+
+#gpuCompany p:hover{
+    cursor: pointer;
+}
+
+#gpuCompany p{
+    border-bottom: 1px solid;
+}
+
+#gpuCompany p:hover{
+    background-color: rgb(196, 196, 196);
+    padding: auto;
+}
+
+#gpuCompany #compVal
+{
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+
+
+#gpuCompany i{
+    position: absolute;
+    display: inline;
+    /* font-family: 'Font Awesome 5 Free';
+    font-style: normal; */
+   
+    
+    margin-left: 280px;
+    margin-top: 10px;
+    padding: 0;
+    cursor: pointer;
+    /* right: 910px; */
+}
+
+#gpuCompany input{
+    width: auto;
+    outline: none;
+}
+
+
+#gpuBrand{
+    width: max-content;
+}
+
 .container textarea{
     direction: rtl;
     font-size: 1.5rem;
@@ -175,6 +334,10 @@ button:hover{
     margin-bottom: 10px;
 }
 
+.hide{
+    display: none;
+    visibility: hidden;
+}
 
 
 /* .container div{

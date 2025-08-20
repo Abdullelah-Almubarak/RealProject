@@ -52,8 +52,146 @@
             </div>
             
           </div>  --}}
-            
             <hr>
+            <div class="prodType">
+                <label>نوع المنتج<span style="color: red">*</span></label>
+            </div >
+
+           
+            <fieldset class="parts">
+            <legend>قطع الكمبيوتر</legend>
+
+                 <label for="gpus" >
+                    كرت شاشة
+                    <input type="radio" name="type" id="gpus">
+                </label>
+
+                <label for="cpus">
+                    معالج
+                    <input type="radio" name="type" id="cpus">
+                </label>
+
+                 <label for="rams" >
+                    الرام
+                    <input type="radio" name="type" id="rams">
+                </label>
+
+                <label for="storage">
+                    التخزين
+                    <input type="radio" name="type" id="storage">
+                </label>
+
+                 <label for="motherboards" >
+                    المذربورد
+                    <input type="radio" name="type" id="motherboards">
+                </label>
+
+                <label for="coolers">
+                    المبرد
+                    <input type="radio" name="type" id="coolers">
+                </label>
+
+                 <label for="psu" >
+                    باورسبلاي
+                    <input type="radio" name="type" id="psu">
+                </label>
+
+                <label for="cases">
+                    الكيسات
+                    <input type="radio" name="type" id="cases">
+                </label>
+
+                 <label for="fans" >
+                    المراوح
+                    <input type="radio" name="type" id="fans">
+                </label>
+
+            </fieldset>
+            
+
+             <fieldset class="acco">
+            <legend>ملحقات الكمبيوتر</legend>
+
+                 <label for="monitors" >
+                    شاشة
+                    <input type="radio" name="type" id="monitors">
+                </label>
+
+                <label for="tables">
+                    طاولة
+                    <input type="radio" name="type" id="tables">
+                </label>
+
+                 <label for="chairs" >
+                    كرسي
+                    <input type="radio" name="type" id="chairs">
+                </label>
+
+                <label for="mouses">
+                    ماوس
+                    <input type="radio" name="type" id="mouses">
+                </label>
+
+                 <label for="keyboards" >
+                    كيبورد
+                    <input type="radio" name="type" id="keyboards">
+                </label>
+
+                <label for="mousepads">
+                    ماوس باد
+                    <input type="radio" name="type" id="mousepads">
+                </label>
+
+                 <label for="headphones" >
+                    سماعة
+                    <input type="radio" name="type" id="headphones">
+                </label>
+
+                <label for="microphones">
+                    مايكروفون
+                    <input type="radio" name="type" id="microphones">
+                </label>
+
+                 <label for="RGPLights" >
+                    اضائة
+                    <input type="radio" name="type" id="RGPLights">
+                </label>
+
+            </fieldset>
+
+            <div class="sel">
+
+                <label for="gpuSize">
+                    حجم الكرت
+                    <input type="number" id="gpuSize" min="1">
+                    <span>GB</span>
+                </label>
+                
+                <div id="gpuCompany">
+                    
+                        <input type="text" placeholder="-- الشركة --" id="compVal" readonly>
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                   
+
+                    <div id="compList" class="hide">
+                        <input type="text" id="companySearch">
+                        <p>-- الشركة --</p>
+                    </div>
+                </div>
+
+{{-- 
+                <select name="" id="gpuCompany">
+                    
+                    <option value="">-- الشركة --</option>
+                    <option value="nvidia">Nvidia</option>
+                </select> --}}
+
+                <select name="" id="gpuBrand">
+                    <option value="">-- البراند --</option>
+                </select>
+
+            </div>
+            
 
             <label for="prodDesc">وصف المنتج<span style="color: red">*</span></label>
             <textarea name="prodDesc" id="prodDesc" cols="20" rows="8" placeholder="مثال: نوع السوكت LGA 1151 
