@@ -15,6 +15,7 @@
     
     
     <h1>اضافة المنتجات</h1>
+    
         {{-- <img src="{{ asset("storage") }}/{{session()->get("image")}}" alt="kawaii" width="250"> --}}
         <form action="{{route("addProduct.Post")}}" id="addProduct" class="container" method="POST" enctype="multipart/form-data">
             @csrf
@@ -162,7 +163,7 @@
             <div class="sel">
 
                 <label for="gpuSize">
-                    حجم الكرت
+                    حجم الذاكرة
                     <input type="number" id="gpuSize" min="1">
                     <span>GB</span>
                 </label>

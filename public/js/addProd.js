@@ -38,7 +38,7 @@ var hr=document.createElement("hr");
 
 compList.getElementsByTagName("p")[0].addEventListener("click",function(e){
     compVal.placeholder=this.innerText;
-    // compVal.value=this.innerText;
+    compVal.value=this.innerText;
     compVal.data=this.innerText;
     if(gpuBrand.length>1)
     {
@@ -51,92 +51,143 @@ compList.getElementsByTagName("p")[0].addEventListener("click",function(e){
     }
 });
 
-gpu.addEventListener("change",function(e){
+
+gpu.addEventListener("change",e=>{
     fetch("js/companyInfo.json")
     .then(res=>res.json())
     .then(res=>{
         console.log(res[gpu.id]["Nvidia"][0]);
-        for(i=0;i<res.gpu.length;i++)
+        for(i=0;i<Object.keys(res[gpu.id]).length;i++)
         {
-            
-            var op=document.createElement("p");
-            op.innerText=res.gpu[i];
-            op.data=res.gpu[i].toLowerCase();
+             var op=document.createElement("p");
+            op.innerText=Object.keys(res[gpu.id])[i];
+            op.data=Object.keys(res[gpu.id])[i].toLowerCase();
+            op.realName=Object.keys(res[gpu.id])[i];
             // console.log(res.gpu[i]);
             op.addEventListener("click",function(e){
-                // compVal.value=this.innerText;
-                compVal.data=this.innerText;
-                compVal.placeholder=this.innerText;
+                compVal.data=this.realName;
+                compVal.value=this.realName;
+                compVal.placeholder=this.realName;
 
-                 if(compVal.data=="Nvidia")
+                if(gpuBrand.childElementCount>1)
                 {
-                    fetch("js/companyInfo.json")
-                    .then(res=>res.json())
-                    .then(res=>{
-                        if(gpuBrand.length>1)
-                        {
-                            var brandLength=gpuBrand.length;
-                            for(i=1;i<brandLength;i++)
-                            {
-                                gpuBrand.children[1].remove();
-                            }
-
-                            for(i=0;i<res.nvidia_brand.length;i++)
-                            {
-                                var op=document.createElement("option");
-                                op.value=res.nvidia_brand[i];
-                                op.innerText=res.nvidia_brand[i];
-                                gpuBrand.appendChild(op);
-                            }
-                        }
-                        else
-                        {
-                            for(i=0;i<res.nvidia_brand.length;i++)
-                            {
-                                var op=document.createElement("option");
-                                op.value=res.nvidia_brand[i];
-                                op.innerText=res.nvidia_brand[i];
-                                gpuBrand.appendChild(op);
-                            }
-                        }
-                        
-                    })
-                }
-                else if(compVal.data=="AMD")
-                {
-                    if(gpuBrand.length>1)
-                        {
-                            var brandLength=gpuBrand.length;
-                            for(i=1;i<brandLength;i++)
-                            {
-                                
-                                gpuBrand.children[1].remove();
-                            }
-                            
-                        }
-                }
-                else if(compVal.data=="")
-                {
-                    if(gpuBrand.length>1)
-                        {
-                            var brandLength=gpuBrand.length;
-                            for(i=1;i<brandLength;i++)
-                            {
-                                gpuBrand.children[1].remove();
-                            }
-                            
-                        }
+                    gpuBrandLEngth=gpuBrand.childElementCount;
+                    for(i=1;i<gpuBrandLEngth;i++)
+                    {
+                        gpuBrand[1].remove();
+                    }
                 }
 
-                // alert(prodName.value);
-            });
+                for(i=0;i<Object.keys(res[gpu.id][compVal.data]).length;i++)
+                {
+                    if(Object.keys(res[gpu.id][compVal.data])[i]=="brand")
+                    {
+                        arayName=Object.keys(res[gpu.id][compVal.data])[i];
+
+
+                        for(j=0;j<res[gpu.id][compVal.data][arayName].length;j++)
+                        {
+
+                            var op=document.createElement("option");
+                            op.value=res[gpu.id][compVal.data][arayName][j];
+                            op.innerText=res[gpu.id][compVal.data][arayName][j];
+                            gpuBrand.appendChild(op);
+
+                        }
+                    }
+                }
+            })
             compList.appendChild(op);
-           
         }
+    })
+})
+
+// gpu.addEventListener("change",function(e){
+//     fetch("js/companyInfo.json")
+//     .then(res=>res.json())
+//     .then(res=>{
+//         console.log(res[gpu.id]["Nvidia"]);
+//         for(i=0;i<res.gpu.length;i++)
+//         {
+            
+//             var op=document.createElement("p");
+//             op.innerText=res.gpu[i];
+//             op.data=res.gpu[i].toLowerCase();
+//             op.realName=res.gpu[i];
+//             // console.log(res.gpu[i]);
+//             op.addEventListener("click",function(e){
+//                 // compVal.value=this.innerText;
+//                 compVal.data=this.realName;
+//                 compVal.placeholder=this.innerText;
+
+//                  if(compVal.data=="Nvidia")
+//                 {
+//                     fetch("js/companyInfo.json")
+//                     .then(res=>res.json())
+//                     .then(res=>{
+//                         if(gpuBrand.length>1)
+//                         {
+//                             var brandLength=gpuBrand.length;
+//                             for(i=1;i<brandLength;i++)
+//                             {
+//                                 gpuBrand.children[1].remove();
+//                             }
+
+//                             for(i=0;i<res.nvidia_brand.length;i++)
+//                             {
+//                                 var op=document.createElement("option");
+//                                 op.value=res.nvidia_brand[i];
+//                                 op.innerText=res.nvidia_brand[i];
+//                                 gpuBrand.appendChild(op);
+//                             }
+//                         }
+//                         else
+//                         {
+//                             for(i=0;i<res.nvidia_brand.length;i++)
+//                             {
+//                                 var op=document.createElement("option");
+//                                 op.value=res.nvidia_brand[i];
+//                                 op.innerText=res.nvidia_brand[i];
+//                                 gpuBrand.appendChild(op);
+//                             }
+//                         }
+                        
+//                     })
+//                 }
+//                 else if(compVal.data=="AMD")
+//                 {
+//                     if(gpuBrand.length>1)
+//                         {
+//                             var brandLength=gpuBrand.length;
+//                             for(i=1;i<brandLength;i++)
+//                             {
+                                
+//                                 gpuBrand.children[1].remove();
+//                             }
+                            
+//                         }
+//                 }
+//                 else if(compVal.data=="")
+//                 {
+//                     if(gpuBrand.length>1)
+//                         {
+//                             var brandLength=gpuBrand.length;
+//                             for(i=1;i<brandLength;i++)
+//                             {
+//                                 gpuBrand.children[1].remove();
+//                             }
+                            
+//                         }
+//                 }
+
+//             });
+//             compList.appendChild(op);
+           
+//         }
         
-    });
+//     });
     
-});
+// });
 
 
 companySearch.addEventListener("input",function(e){
