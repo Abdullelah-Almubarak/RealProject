@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\product_image;
 use App\Models\Product_images;
+use App\Models\Product_storage;
 use Auth;
 use Carbon\Traits\ToStringFormat;
 use DB;
@@ -48,6 +49,7 @@ class ProductCont extends Controller
                     "prodQU"=>"required",
                     "prodPrice"=>"required",
                     // "prodImage"=>"required",
+                    "prodType"=>"required",
                     "prodDesc"=>"required",
                     "avButton"
                 ]);
@@ -133,9 +135,65 @@ class ProductCont extends Controller
                         return response()->json(["error"=>"قيمة المنتج اصغر من او يساوي صفر"]);
                     }
 
-                    
-                   
+                    //Save product Type
 
+                    if($product->save())
+                    {
+                        switch($request->prodType)
+                        {
+                            case"storage":{
+                                $storage=new Product_storage();
+                                $storage->product_id=$product->id;
+                                $storage->type=$request->type;
+                                $storage->size=$request->size;
+                                $storage->company_name=$request->company_name;
+
+                                try
+                                {
+                                    $storage->save();
+                                    if(!$storage->save())
+                                    {
+                                        $productDel=Product::where("id","=",$product->id)->first();
+                                        if($productDel->delete())
+                                        {
+                                            // return redirect("/addProd")->with("error","لم يتم اضافة المنتج ");
+                                            return response()->json(["error"=>"لم يتم اضافة معلومات المنتج بنجاح "]);
+                                        }
+                                    }
+                                }
+                                catch(Exception $e)
+                                {
+                                    $productDel=Product::where("id","=",$product->id)->first();
+                                        if($productDel->delete())
+                                        {
+                                            // return redirect("/addProd")->with("error","لم يتم اضافة المنتج ");
+                                            return response()->json(["error"=>"حدث خطأ"]);
+                                        }
+                                }
+                                // $storage->type=
+                                break;
+                            }
+
+                            default:{
+                                try{
+                                     $productDel=Product::where("id","=",$product->id)->first();
+                                        if($productDel->delete())
+                                        {
+                                            // return redirect("/addProd")->with("error","لم يتم اضافة المنتج ");
+                                            return response()->json(["error"=>"لم يتم اضافة نوع المنتج بنجاح "]);
+                                        }
+                                }
+                                catch(Exception $e)
+                                {
+                                    return response()->json(["error"=>"حدث خطأ"]);
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                   
+                    //Save Product Images
                     if($product->save())
                     {   
                         $files=$request->file("prodImage"); 
@@ -221,7 +279,7 @@ class ProductCont extends Controller
                     else
                     {
                         // return redirect("/addProd")->with("error","لم يتم اضافة المنتج ");
-                        return response()->json(["error"=>"لم يتم اضافة المنتج ولم يتم حظ الصور"]);
+                        return response()->json(["error"=>"لم يتم اضافة المنتج"]);
                     }
                 }
                 catch(Exception $e)

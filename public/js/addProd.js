@@ -2,6 +2,7 @@ var imageInput=document.getElementById("prodImage");
 // var formProdcut=document.getElementById("addProduct");
 var count=0;
 var dicImages={};
+var detailsValues={};
 
 var dropImage=document.getElementsByClassName("dropImage")[0];
 var formdata=new FormData();
@@ -12,7 +13,11 @@ var prodPrice=document.getElementById("prodPrice");
 var prodDesc=document.getElementById("prodDesc");
 var prodAV=document.getElementById("avButton");
 
+var prodType=null;
 var gpu=document.getElementById("gpus");
+var cpu=document.getElementById("cpus");
+var storage=document.getElementById("storage");
+var ram=document.getElementById("rams");
 
 prodQuantity.pattern="[0-9]";
 prodPrice.pattern="[0-9]";
@@ -23,198 +28,717 @@ var mes=document.createElement("h1");
 var pcPartsBT=document.getElementById("pr");
 var pcAccoBT=document.getElementById("ac");
 var partsType=document.getElementsByClassName("parts")[0];
-var gpuCompany=document.getElementById("gpuCompany");
-var gpuBrand=document.getElementById("gpuBrand");
-var compList=document.getElementById("compList");
-var companySearch=document.getElementById("companySearch");
+var Company=document.getElementById("Company");
+var Brand=document.getElementById("Brand");
+var selectList=document.getElementById("selectList");
+var inputSearch=document.getElementById("inputSearch");
+
+var prdouctdetails=document.getElementsByClassName("details")[0];
 
 var hr=document.createElement("hr");
     hr.id="prHR";
 
-    var compVal=document.getElementById("compVal");
+var selectValue=document.getElementById("selectValue");
 
+var acc=document.getElementsByClassName("acco")[0];
+
+function detailsDiv(){
+    details=document.createElement("div");
+    details.classList.add("details");
+
+    return details;
+}
+
+function Input(text,inputName,inputType,spanText){
+    
+    labelInput=document.createElement("label");
+    labelInput.setAttribute("for","Size");
+    // size.innerText=" حجم الذاكرة ";
+    // size.placeholder=text;
+    labelInput.title=text;
+
+    input=document.createElement("input");
+    input.id="Size";
+    // sizeInp.type="number";
+    input.type=inputType;
+    input.placeholder=text
+    input.title=text;
+    // sizeInp.name="size";
+    input.name=inputName,
+
+    span=document.createElement("span");
+    // span.innerText=" GB"
+    span.innerText=spanText;
+
+    labelInput.appendChild(input);
+    labelInput.appendChild(span);
+    return labelInput;
+}
+
+
+
+function Select(inputName,nullText)
+{
+    
+    selectDiv=document.createElement("div");
+    selectDiv.id="selectDiv";
+    selectDiv.classList.add("Select")
+    selectDiv.listFor=inputName;
+
+    selectValue=document.createElement("input");
+    selectValue.id="selectValue";
+    selectValue.readOnly=true;
+    selectValue.type="text";
+    selectValue.placeholder=nullText;
+    selectValue.name=inputName;
+
+
+    selectIcon=document.createElement("i")
+    selectIcon.id="inIcon";
+    selectIcon.classList.add("fa");
+    selectIcon.classList.add("fa-caret-down");
+    
+    selectIcon.setAttribute("aria-hidden",true);
+
+    selectList=document.createElement("div");
+    selectList.id="selectList";
+    selectList.classList.add("selectList");
+    selectList.classList.add("hide");
+
+    inputSearch=document.createElement("input");
+    inputSearch.id="inputSearch";
+    inputSearch.type="text"
+
+    inputSearch.addEventListener("input",e=>{
+        // console.log(listContainer.childElementCount)
+    var comLen=listContainer.childElementCount;
+    // console.log(selectList.childElementCount);
+    for(i=1;i<listContainer.childElementCount;i++)
+    {
+        if(!listContainer.children[i].data.includes(inputSearch.value.toLowerCase()))
+        {
+            listContainer.children[i].classList.add("hide");
+        }
+        else
+        {
+            listContainer.children[i].classList.remove("hide");
+        }
+    }
+    // console.log(inputSearch.value.includes("n"));
+    });
+    
+    selectDiv.addEventListener("click",e=>{
+            if(e.target.id!="inputSearch")
+            {   
+                // e.currentTarget.count=i;
+                // console.log(e.currentTarget.count);
+                // console.log(e.currentTarget.listFor);
+                // selectList=com[i].getElementsByClassName("selectList")[0];
+                if(!selectList.classList.contains("hide") && e.currentTarget.querySelector('#selectList').classList.contains("hide"))
+                {
+                    
+                    selectList.classList.add("hide");
+                    selectList.classList.remove("openSelect");
+                }
+                selectList=e.currentTarget.querySelector('#selectList');
+                listContainer=e.currentTarget.querySelector("#listContainer");
+                // if(e.currentTarget.count==0)
+                // {
+                //     selectList.count=0;
+                    
+                // }
+                // console.log(gpu.parentNode.name);
+                inputSearch=e.currentTarget.querySelector("#inputSearch");
+                // console.log(selectList.childElementCount);
+                selectValue=e.currentTarget.querySelector('#selectValue');
+
+                 selectList.getElementsByTagName("p")[0].addEventListener("click",function(e){
+                    
+                    
+                    selectValue.placeholder=this.innerText;
+                    selectValue.value=null;
+                    selectValue.data=null;
+                 });    
+
+                e.currentTarget.querySelector('#selectList').classList.toggle("hide");
+                e.currentTarget.querySelector('#selectList').classList.toggle("openSelect");
+            }
+    });
+    // companyDiv.addEventListener("click",function(e){
+        
+    //     if(e.target.id!="inputSearch")
+    //     {
+    //         selectList.classList.toggle("hide");
+    //     }
+    // });
+
+    nullValue=document.createElement("p");
+    nullValue.innerText=nullText;
+    
+    listContainer=document.createElement("div");
+    listContainer.classList.add("listContainer");
+    listContainer.id="listContainer";
 
     
 
-compList.getElementsByTagName("p")[0].addEventListener("click",function(e){
-    compVal.placeholder=this.innerText;
-    compVal.value=this.innerText;
-    compVal.data=this.innerText;
-    if(gpuBrand.length>1)
-    {
-        var brandLength=gpuBrand.length;
-        for(i=1;i<brandLength;i++)
-        {
-            gpuBrand.children[1].remove();
-        }
-                            
-    }
-});
+    
+
+    selectList.appendChild(inputSearch);
+    // selectList.appendChild(nullValue);
+    selectList.appendChild(listContainer);
+    listContainer.appendChild(nullValue);
+    
+    
+    selectDiv.appendChild(selectValue);
+    selectDiv.appendChild(selectIcon);
+    selectDiv.appendChild(selectList);
+
+    
+    return selectDiv;
+}
+
 
 
 gpu.addEventListener("change",e=>{
-    fetch("js/companyInfo.json")
+    prodType="gpu";
+    // console.log(size.querySelector("#Size").value);
+    var prdouctdetails=document.getElementsByClassName("details")[0];
+    if(document.body.contains(prdouctdetails))
+    {
+        prdouctdetails.remove();
+        // console.log("yes")
+    }
+
+    var prdouctdetails=acc.insertAdjacentElement("afterend",detailsDiv());
+
+    // var co=prdouctdetails.insertAdjacentElement("afterbegin",company());
+
+    // var brc=co.getElementsByClassName("selectList")[0];
+
+    // var Brandc=co.insertAdjacentElement("afterend",company());
+
+    var co=prdouctdetails.appendChild(Select("brand","-- البراند --"));
+     
+    var brc=co.getElementsByClassName("listContainer")[0];
+
+    var Brandc=prdouctdetails.appendChild(Select("company_name","-- الشركة --"));
+    
+
+    prdouctdetails.appendChild(Input(" الذاكرة","size","number"," GB"));
+
+    
+
+    // prdouctdetails.insertAdjacentElement("beforeend",sizeInput("حجم الذاكرة","size","number"," GB"));
+    
+
+    var com=document.getElementsByClassName("Select");
+    for(i=0;i<com.length;i++)
+    {
+        // com[0].count=0;
+        com[i].addEventListener("click",e=>{
+        //     if(e.target.id!="inputSearch")
+        //     {   
+        //         // e.currentTarget.count=i;
+        //         // console.log(e.currentTarget.count);
+        //         // console.log(e.currentTarget.listFor);
+        //         // selectList=com[i].getElementsByClassName("selectList")[0];
+        //         if(!selectList.classList.contains("hide") && e.currentTarget.querySelector('#selectList').classList.contains("hide"))
+        //         {
+                    
+        //             selectList.classList.add("hide");
+        //         }
+        //         selectList=e.currentTarget.querySelector('#selectList');
+        //         // if(e.currentTarget.count==0)
+        //         // {
+        //         //     selectList.count=0;
+                    
+        //         // }
+        //         // console.log(gpu.parentNode.name);
+        //         inputSearch=e.currentTarget.querySelector("#inputSearch");
+        //         // console.log(selectList.childElementCount);
+        //         selectValue=e.currentTarget.querySelector('#selectValue');
+                selectList.getElementsByTagName("p")[0].addEventListener("click",function(e){
+                    
+                    
+                    // selectValue.placeholder=this.innerText;
+                    // selectValue.value=null;
+                    // selectValue.data=null;
+                    // console.log(selectValue.data);
+                    if(brc.childElementCount>1 && selectList.parentNode.listFor=="company_name")
+                    {
+                        var brandInp=co.querySelector("#selectValue");
+                        // console.log(brc.children[0]);
+                        brandInp.value=null;
+                        brandInp.data=null;
+                        brandInp.placeholder="-- البراند --";
+
+                        var brandLength=brc.childElementCount;
+                        for(i=1;i<brandLength;i++)
+                        {
+                            brc.children[1].remove();
+                        }
+                                            
+                    }
+                });
+
+        //         // console.log(e.currentTarget.children[1]);
+        //         e.currentTarget.querySelector('#selectList').classList.toggle("hide");
+        //     }
+        });
+    }
+
+    fetch("js/productDetails.json")
     .then(res=>res.json())
     .then(res=>{
-        console.log(res[gpu.id]["Nvidia"][0]);
+        
         for(i=0;i<Object.keys(res[gpu.id]).length;i++)
         {
-             var op=document.createElement("p");
+            var op=document.createElement("p");
             op.innerText=Object.keys(res[gpu.id])[i];
             op.data=Object.keys(res[gpu.id])[i].toLowerCase();
             op.realName=Object.keys(res[gpu.id])[i];
             // console.log(res.gpu[i]);
             op.addEventListener("click",function(e){
-                compVal.data=this.realName;
-                compVal.value=this.realName;
-                compVal.placeholder=this.realName;
+                selectValue.data=this.realName;
+                selectValue.value=this.realName;
+                selectValue.placeholder=this.realName;
 
-                if(gpuBrand.childElementCount>1)
+                if(brc.childElementCount>1)
                 {
-                    gpuBrandLEngth=gpuBrand.childElementCount;
+                    var brandInp=co.querySelector("#selectValue");
+                    brandInp.value=null;
+                    brandInp.data=null;
+                    brandInp.placeholder="-- البراند --";
+
+                    gpuBrandLEngth=brc.childElementCount;
                     for(i=1;i<gpuBrandLEngth;i++)
                     {
-                        gpuBrand[1].remove();
+                        // console.log(brc.childElementCount)
+                        
+                        brc.children[1].remove();
                     }
                 }
 
-                for(i=0;i<Object.keys(res[gpu.id][compVal.data]).length;i++)
+                for(i=0;i<Object.keys(res[gpu.id][selectValue.data]).length;i++)
                 {
-                    if(Object.keys(res[gpu.id][compVal.data])[i]=="brand")
+                    if(Object.keys(res[gpu.id][selectValue.data])[i]=="brand")
                     {
-                        arayName=Object.keys(res[gpu.id][compVal.data])[i];
+                        arayName=Object.keys(res[gpu.id][selectValue.data])[i];
 
 
-                        for(j=0;j<res[gpu.id][compVal.data][arayName].length;j++)
+                        for(j=0;j<res[gpu.id][selectValue.data][arayName].length;j++)
                         {
-
-                            var op=document.createElement("option");
-                            op.value=res[gpu.id][compVal.data][arayName][j];
-                            op.innerText=res[gpu.id][compVal.data][arayName][j];
-                            gpuBrand.appendChild(op);
+                            // console.log("ff");
+                            var op=document.createElement("p");
+                            // op.value=res[gpu.id][selectValue.data][arayName][j];
+                            op.innerText=res[gpu.id][selectValue.data][arayName][j];
+                            op.data=res[gpu.id][selectValue.data][arayName][j].toLowerCase();
+                            op.realName=res[gpu.id][selectValue.data][arayName][j];
+                            op.addEventListener("click",e=>{
+                                selectValue.data=e.currentTarget.realName;
+                                selectValue.value=e.currentTarget.realName;
+                                selectValue.placeholder=e.currentTarget.realName;
+                            })
+                            brc.appendChild(op);
 
                         }
                     }
                 }
             })
-            compList.appendChild(op);
+            Brandc.querySelector("#listContainer").appendChild(op);
         }
     })
 })
 
-// gpu.addEventListener("change",function(e){
-//     fetch("js/companyInfo.json")
-//     .then(res=>res.json())
-//     .then(res=>{
-//         console.log(res[gpu.id]["Nvidia"]);
-//         for(i=0;i<res.gpu.length;i++)
-//         {
-            
-//             var op=document.createElement("p");
-//             op.innerText=res.gpu[i];
-//             op.data=res.gpu[i].toLowerCase();
-//             op.realName=res.gpu[i];
-//             // console.log(res.gpu[i]);
-//             op.addEventListener("click",function(e){
-//                 // compVal.value=this.innerText;
-//                 compVal.data=this.realName;
-//                 compVal.placeholder=this.innerText;
-
-//                  if(compVal.data=="Nvidia")
-//                 {
-//                     fetch("js/companyInfo.json")
-//                     .then(res=>res.json())
-//                     .then(res=>{
-//                         if(gpuBrand.length>1)
-//                         {
-//                             var brandLength=gpuBrand.length;
-//                             for(i=1;i<brandLength;i++)
-//                             {
-//                                 gpuBrand.children[1].remove();
-//                             }
-
-//                             for(i=0;i<res.nvidia_brand.length;i++)
-//                             {
-//                                 var op=document.createElement("option");
-//                                 op.value=res.nvidia_brand[i];
-//                                 op.innerText=res.nvidia_brand[i];
-//                                 gpuBrand.appendChild(op);
-//                             }
-//                         }
-//                         else
-//                         {
-//                             for(i=0;i<res.nvidia_brand.length;i++)
-//                             {
-//                                 var op=document.createElement("option");
-//                                 op.value=res.nvidia_brand[i];
-//                                 op.innerText=res.nvidia_brand[i];
-//                                 gpuBrand.appendChild(op);
-//                             }
-//                         }
-                        
-//                     })
-//                 }
-//                 else if(compVal.data=="AMD")
-//                 {
-//                     if(gpuBrand.length>1)
-//                         {
-//                             var brandLength=gpuBrand.length;
-//                             for(i=1;i<brandLength;i++)
-//                             {
-                                
-//                                 gpuBrand.children[1].remove();
-//                             }
-                            
-//                         }
-//                 }
-//                 else if(compVal.data=="")
-//                 {
-//                     if(gpuBrand.length>1)
-//                         {
-//                             var brandLength=gpuBrand.length;
-//                             for(i=1;i<brandLength;i++)
-//                             {
-//                                 gpuBrand.children[1].remove();
-//                             }
-                            
-//                         }
-//                 }
-
-//             });
-//             compList.appendChild(op);
-           
-//         }
-        
-//     });
-    
-// });
 
 
-companySearch.addEventListener("input",function(e){
-    var comLen=compList.childElementCount;
-    // console.log(compList.childElementCount);
-    for(i=2;i<compList.childElementCount;i++)
+storage.addEventListener("click",e=>{
+    detailsValues={};
+    prodType="storage";
+    var prdouctdetails=document.getElementsByClassName("details")[0];
+    if(document.body.contains(prdouctdetails))
     {
-        if(!compList.children[i].data.includes(companySearch.value.toLowerCase()))
-        {
-            compList.children[i].classList.add("hide");
-        }
-        else
-        {
-            compList.children[i].classList.remove("hide");
-        }
+        prdouctdetails.remove();
+        // console.log("yes")
     }
-    // console.log(companySearch.value.includes("n"));
+
+    detailsValues["size"]=null;
+    detailsValues["type"]=null;
+    detailsValues["unite_size"]=null;
+    detailsValues["company"]=null;
+
+    var prdouctdetails=acc.insertAdjacentElement("afterend",detailsDiv());
+
+    var type=prdouctdetails.appendChild(Select("type","-- النوع --"));
+
+    var unit=prdouctdetails.appendChild(Select("unite_size","-- وحدة القياس --"));
+
+    var size=prdouctdetails.appendChild(Input("مساحة الذاكرة","size","number",""));
+
+    size.querySelector("#Size").addEventListener("input",e=>{
+        // console.log(Object.keys(detailsValues).length);
+        // console.log(e.currentTarget.value)
+        detailsValues["size"]=e.currentTarget.value;
+        // console.log(detailsValues["size"]);
+        // console.log(Object.keys(detailsValues).length);
+
+    })
+
+    // var list=company.getElementsByClassName("selectList")[0];
+
+    var company=prdouctdetails.appendChild(Select("company_name","-- الشركة --"));
+
+     fetch("js/productDetails.json")
+    .then(res=>res.json())
+    .then(res=>{
+        var keys=Object.keys(res[storage.id]);
+        var values=res[storage.id];
+        for(i=0;i<keys.length;i++)
+        {
+           switch(keys[i])
+           {
+            case "type":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    // console.log(values[keys[i]][j])
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                     op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                        detailsValues["type"]=this.realName;
+                     });    
+                    type.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+            case "size_unit":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                    op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                        detailsValues["unite_size"]=this.realName;
+                        // console.log(size.querySelector("#Size").value);
+                     });    
+                    unit.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+            case "Company":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                    op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                        detailsValues["company"]=this.realName;
+                     });    
+                    company.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+           }
+        }
+    });
+
 })
 
 
-
-gpuCompany.addEventListener("click",function(e){
-    if(e.target.id!="companySearch")
+ram.addEventListener("click",e=>{
+    var prdouctdetails=document.getElementsByClassName("details")[0];
+    if(document.body.contains(prdouctdetails))
     {
-        compList.classList.toggle("hide");
+        prdouctdetails.remove();
+        // console.log("yes")
     }
-});
+
+    var prdouctdetails=acc.insertAdjacentElement("afterend",detailsDiv());
+
+    
+
+    var company=prdouctdetails.appendChild(Select("company_name","-- الشركة --"));
+
+    prdouctdetails.appendChild(Input("مساحة الذاكرة","size","number",""));
+
+    prdouctdetails.appendChild(Input("سرعة الرام","speed","number"," MHz"));
+
+
+    var type=prdouctdetails.appendChild(Select("type","-- النوع --"));
+
+    var color=prdouctdetails.appendChild(Select("color","-- اللون --"));
+    
+
+    // var list=company.getElementsByClassName("selectList")[0];
+
+    
+
+     fetch("js/productDetails.json")
+    .then(res=>res.json())
+    .then(res=>{
+        var keys=Object.keys(res[ram.id]);
+        var values=res[ram.id];
+        for(i=0;i<keys.length;i++)
+        {
+           switch(keys[i])
+           {
+            case "type":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    // console.log(values[keys[i]][j])
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                     op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                     });    
+                    type.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+            case "color":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                    op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                     });    
+                    color.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+            case "Company":{
+                for(j=0;j<values[keys[i]].length;j++)
+                {
+                    var op=document.createElement("p");
+                    op.innerText=values[keys[i]][j];
+                    op.data=values[keys[i]][j].toLowerCase();
+                    op.realName=values[keys[i]][j];
+                    op.addEventListener("click",function(e){
+                        selectValue.data=this.realName;
+                        selectValue.value=this.realName;
+                        selectValue.placeholder=this.realName;
+                     });    
+                    company.querySelector("#listContainer").appendChild(op);
+                }
+                break;
+            }
+
+           }
+        }
+    });
+
+})
+
+
+cpu.addEventListener("click",e=>{
+    var prdouctdetails=document.getElementsByClassName("details")[0];
+    if(document.body.contains(prdouctdetails))
+    {
+        prdouctdetails.remove();
+        // console.log("yes")
+    }
+
+    var prdouctdetails=acc.insertAdjacentElement("afterend",detailsDiv());
+
+    var company=prdouctdetails.appendChild(Select("company_name","-- الشركة --"));
+    var overClock=prdouctdetails.appendChild(Input("","overclockable","checkbox","قابل للكسر"));
+    var numOfCores=prdouctdetails.appendChild(Input("عدد الأنوية","cores","number",""));
+    numOfCores.setAttribute("min",1);
+    var gen=prdouctdetails.appendChild(Select("generation","-- الجيل --"));
+    var series=prdouctdetails.appendChild(Select("series","-- سلسلة --"));
+    var socket=prdouctdetails.appendChild(Select("socket","-- السوكيت --"));
+
+    company.addEventListener("click",e=>{
+        selectList.getElementsByTagName("p")[0].addEventListener("click",e=>{
+
+               if(gen.querySelector("#listContainer").childElementCount>1 )
+                    {
+                        var listValue=gen.querySelector("#selectValue");
+                        listValue.data=null;
+                        listValue.value=null;
+                        listValue.placeholder="-- الجيل --";
+
+                        var listLength=gen.querySelector("#listContainer").childElementCount;
+                        for(g=1;g<listLength;g++)
+                        {
+                            // console.log(gen.querySelector("#selectList").childElementCount)
+                            gen.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+
+                    if(socket.querySelector("#listContainer").childElementCount>1)
+                    {
+                        var listValue=socket.querySelector("#selectValue");
+                        listValue.data=null;
+                        listValue.value=null;
+                        listValue.placeholder="-- السوكيت --";
+
+                        var listLength=socket.querySelector("#listContainer").childElementCount;
+
+                        for(so=1;so<listLength;so++)
+                        {
+                            socket.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+
+                    if(series.querySelector("#listContainer").childElementCount>1)
+                    {
+                        var listValue=series.querySelector("#selectValue");
+                        listValue.data=null;
+                        listValue.value=null;
+                        listValue.placeholder="-- سلسلة --";
+
+                        var listLength=series.querySelector("#listContainer").childElementCount;
+                        for(se=1;se<listLength;se++)
+                        {
+                            series.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+        })
+    })
+    
+    fetch("js/productDetails.json")
+    .then(res=>res.json())
+    .then(res=>{
+        
+        var keys=Object.keys(res[cpu.id]);
+        values=Object.keys(res[cpu.id][keys[0]]);
+        // console.log(Object.keys(res[cpu.id][keys[0]][values[0]]));
+        for(i=0;i<values.length;i++)
+        {
+            var op=document.createElement("p");
+                op.innerText=values[i];
+                op.data=values[i].toLowerCase();
+                op.realName=values[i];
+                op.addEventListener("click",function(e){
+                    selectValue.data=this.realName;
+                    selectValue.value=this.realName;
+                    selectValue.placeholder=this.realName;
+                    
+                    // console.log(gen.querySelector("#selectList").childElementCount)
+
+                    if(gen.querySelector("#listContainer").childElementCount>1 )
+                    {
+                        var listLength=gen.querySelector("#listContainer").childElementCount;
+                        for(g=1;g<listLength;g++)
+                        {
+                            // console.log(gen.querySelector("#selectList").childElementCount)
+                            gen.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+
+                    if(socket.querySelector("#listContainer").childElementCount>1)
+                    {
+                        var listLength=socket.querySelector("#listContainer").childElementCount;
+
+                        for(so=1;so<listLength;so++)
+                        {
+                            socket.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+
+                    if(series.querySelector("#listContainer").childElementCount>1)
+                    {
+                        var listLength=series.querySelector("#listContainer").childElementCount;
+                        for(se=1;se<listLength;se++)
+                        {
+                            series.querySelector("#listContainer").children[1].remove();
+                        }
+                    }
+                    // console.log(i)
+                    var etKeys=Object.keys(res[cpu.id][keys[0]][selectValue.data]);
+                    
+                    for(j=0;j<etKeys.length;j++)
+                    {
+                        var curArray=res[cpu.id][keys[0]][selectValue.data][etKeys[j]]
+                        // console.log(curArray.length)
+
+                        switch(etKeys[j]){
+                            case"generation":{
+                                for(k=0;k<curArray.length;k++)
+                                {
+                                    var op=document.createElement("p");
+                                        op.innerText=curArray[k];
+                                        op.data=curArray[k].toLowerCase();
+                                        op.realName=curArray[k];
+                                        op.addEventListener("click",function(e){
+                                            selectValue.data=this.realName;
+                                            selectValue.value=this.realName;
+                                            selectValue.placeholder=this.realName;
+                                    });
+                                    gen.querySelector("#listContainer").appendChild(op);
+                                }
+                                break;
+                            }
+
+                             case"series":{
+                                for(k=0;k<curArray.length;k++)
+                                {
+                                    var op=document.createElement("p");
+                                        op.innerText=curArray[k];
+                                        op.data=curArray[k].toLowerCase();
+                                        op.realName=curArray[k];
+                                        op.addEventListener("click",function(e){
+                                            selectValue.data=this.realName;
+                                            selectValue.value=this.realName;
+                                            selectValue.placeholder=this.realName;
+                                    });
+                                    series.querySelector("#listContainer").appendChild(op);
+                                }
+                                break;
+                            }
+
+                             case"socket":{
+                                for(k=0;k<curArray.length;k++)
+                                {
+                                    var op=document.createElement("p");
+                                        op.innerText=curArray[k];
+                                        op.data=curArray[k].toLowerCase();
+                                        op.realName=curArray[k];
+                                        op.addEventListener("click",function(e){
+                                            selectValue.data=this.realName;
+                                            selectValue.value=this.realName;
+                                            selectValue.placeholder=this.realName;
+                                    });
+                                    socket.querySelector("#listContainer").appendChild(op);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                });
+            company.querySelector("#listContainer").appendChild(op);
+                
+        }
+    });    
+})
+
 // if(document.contains(document.getElementsByClassName("error")[0]))
 // {   
 //     document.getElementsByClassName("error")[0].classList.add("success");
@@ -537,6 +1061,16 @@ form.addEventListener("submit",function x(e){
     formdata.append("prodQU",prodQuantity.value);
     formdata.append("prodPrice",prodPrice.value);
     formdata.append("prodDesc",prodDesc.value);
+    formdata.append("prodType",prodType);
+
+    switch(prodType){
+        case "storage":{
+            formdata.append("size",detailsValues["size"]+" "+detailsValues["unite_size"]);
+            formdata.append("type",detailsValues["type"]);
+            formdata.append("company_name",detailsValues["company"]);
+        }
+    }
+
     if(prodAV.checked)
     {
          formdata.append("avButton","on");
@@ -606,7 +1140,9 @@ form.addEventListener("submit",function x(e){
                 {
                     document.getElementById("divImages").remove();
                 }
+                prodType=null;
                 dicImages={};
+                detailsValues={};
                 count=0;
                 formdata=new FormData();
                 form.reset();
@@ -634,7 +1170,9 @@ form.addEventListener("submit",function x(e){
                 {
                     document.getElementById("divImages").remove();
                 }
+                prodType=null;
                 dicImages={};
+                detailsValues={};
                 count=0;
                 formdata=new FormData();
                 form.reset();
@@ -642,6 +1180,7 @@ form.addEventListener("submit",function x(e){
                 {
                     mes.classList.remove("success")
                 }
+                console.log(resData.error);
                 mes.innerText=resData.error;
                 mes.classList.add("error");
                 addDiv.insertAdjacentElement("beforebegin",mes)
@@ -659,8 +1198,11 @@ form.addEventListener("submit",function x(e){
 
 document.addEventListener("click",e=>{
     // console.log(e.target.parentNode.parentNode.id);
-    if(e.target.id!="compVal" && e.target.id!="companySearch" && !compList.classList.contains("hide"))
+    if(e.target.id!="selectValue" && e.target.id!="inputSearch" && !selectList.classList.contains("hide"))
     {
-        compList.classList.add("hide");
+        // console.log(e.currentTarget)
+        // console.log(e.querySelector("#selectList"))
+        selectList.classList.add("hide");
+        selectList.classList.remove("openSelect");
     }
 })
