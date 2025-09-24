@@ -30,7 +30,7 @@
             <hr>
 
             <label for="prodPrice">قيمة المنتج<span style="color: red">*</span></label>
-            <input type="number" id="prodPrice" name="prodPrice" placeholder="مثال:35.99" >
+            <input type="number" id="prodPrice" name="prodPrice" placeholder="مثال:35.99" min="1" max="999999">
 
             <hr>
 
@@ -62,7 +62,7 @@
             <fieldset class="parts">
             <legend>قطع الكمبيوتر</legend>
 
-                 <label for="gpus" >
+                 <label for="gpus" name="fff">
                     كرت شاشة
                     <input type="radio" name="type" id="gpus">
                 </label>
@@ -160,15 +160,15 @@
 
             </fieldset>
 
-            <div class="sel">
+            {{-- <div class="details"> --}}
 
-                <label for="gpuSize">
+                {{-- <label for="Size">
                     حجم الذاكرة
-                    <input type="number" id="gpuSize" min="1">
+                    <input type="number" id="Size" min="1">
                     <span>GB</span>
-                </label>
+                </label> --}}
                 
-                <div id="gpuCompany">
+                {{-- <div id="Company">
                     
                         <input type="text" placeholder="-- الشركة --" id="compVal" readonly>
                         <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -178,20 +178,14 @@
                         <input type="text" id="companySearch">
                         <p>-- الشركة --</p>
                     </div>
-                </div>
+                </div> --}}
 
-{{-- 
-                <select name="" id="gpuCompany">
-                    
-                    <option value="">-- الشركة --</option>
-                    <option value="nvidia">Nvidia</option>
+
+                {{-- <select name="" id="Brand">
+                    <option value="">-- البراند --</option>
                 </select> --}}
 
-                <select name="" id="gpuBrand">
-                    <option value="">-- البراند --</option>
-                </select>
-
-            </div>
+            {{-- </div> --}}
             
 
             <label for="prodDesc">وصف المنتج<span style="color: red">*</span></label>

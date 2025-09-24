@@ -42,13 +42,13 @@ body{
     padding: 0 5px 3px 5px;
 }
 
-.container label:not(.parts label,.acco label, .sel label){
+.container label:not(.parts label,.acco label, .details label){
     font-weight: bold;
     direction: rtl;
     font-size: 1.6rem;
 }
 
-.container label:not(.dropImage,.parts label,.acco label, .sel label)::after
+.container label:not(.dropImage,.parts label,.acco label, .details label)::after
 {
     content: " هذا الحقل مطلوب";
     color: red;
@@ -214,67 +214,81 @@ body{
     cursor: pointer;
 }
 
-.sel{
-    display: flex;
+.details{
+    display: grid;
     justify-content: center;
-    flex-direction: row-reverse;
-    gap: 1rem;
+    grid-auto-flow: dense;
+    /* grid-auto-flow: dense; */
+    /* flex-direction: row-reverse; */
+    grid-template-columns: repeat(3,auto);
+    gap: 2rem;
+    row-gap: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
-.sel label
+.details label
 {
-    text-align: right;
+    /* text-align: right; */
     direction: rtl;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
 }
 
-.sel span{
+.details span{
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-#gpuCompany{
+.openSelect{
+    z-index: 1;
+}
+
+#selectDiv{
     
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
     height: 0;
-    z-index: 5;
+    /* z-index: 2; */
     /* border: 1px solid;
     border-bottom: 5px solid; */
 }
 
-#gpuCompany p{
+#selectDiv p{
+    width: 100%;
     margin: 0;
     /* border: 1px solid; */
     border-right:1px solid ;
     border-left: 1px solid;
-    padding: 5px;
+    padding: 3px;
+    
 }
 
-#gpuCompany p:hover{
+#selectDiv p:hover{
     cursor: pointer;
 }
 
-#gpuCompany p{
+#selectDiv p{
     border-bottom: 1px solid;
+    background-color: white;
 }
 
-#gpuCompany p:hover{
+#selectDiv p:hover{
     background-color: rgb(196, 196, 196);
     padding: auto;
 }
 
-#gpuCompany #compVal
+#selectDiv #selectValue
 {
     text-align: center;
     outline: none;
     cursor: pointer;
+    position: relative;
 }
 
 
-#gpuCompany i{
+#selectDiv i{
     position: absolute;
     display: inline;
     /* font-family: 'Font Awesome 5 Free';
@@ -288,13 +302,30 @@ body{
     /* right: 910px; */
 }
 
-#gpuCompany input{
-    width: auto;
+#selectDiv input{
+    width: 100%;
     outline: none;
 }
 
+.listContainer {
+    
+    scrollbar-width: thin;
+    width: 307px;
+    border-right: 1px solid black;
+    position: absolute;
+    max-height: calc(15vh - 4rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
-#gpuBrand{
+.listContainer p{
+    /* display: flex; */
+    /* display: contents; */
+    /* color: #ff0000; */
+    /* padding: 300px; */
+}
+
+#Brand{
     width: max-content;
 }
 
