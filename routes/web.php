@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get("item",function(Product $product){
         // dd($products);
         // $item=DB::table("product")->get()->where("product_name","=",$product->product_name)->first();
-        
+
         return view("item",compact("product"));
 });
 
@@ -34,16 +34,22 @@ Route::get("item/{product}",function(Product $product){
 
 // Route::get("item/{product}",[itemController::class,"show"]);
 
+Route::get("storeMemory",function(){
+    // $products= DB::table("product")->get();
+    $products= product::join("product_storage","product_storage.product_id","=","product.id")->get();
+    $product_images=DB::table("product_images")->get();
+    return view('pcParts.storeMemory',compact("products","product_images"));
+});
 
 Route::get("DE",function(){
-    if(session()->get("role","Data Entry"))
+    if(Session::get("role")=="Data Entry")
     {
-        return view("Market/DataEntry");
+        // echo(session()->get("role"));
+        return view("Market.DataEntry");
     }
     else
     {
-        return view("/");
-
+        return redirect("/");
     }
 })->middleware("auth");
 
@@ -63,7 +69,7 @@ Route::get("DE",function(){
 //         return view('welcome');
 //     });
 
-   
+
 // });
 
 Route::get("/addProd",[ProductCont::class,"addProduct"])->name("addProduct");
