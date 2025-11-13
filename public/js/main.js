@@ -1,3 +1,5 @@
+// const { Children } = require("react");
+
 var bar=document.getElementById("bars");
 var header=document.getElementsByTagName("header");
 var sideBar=document.getElementsByClassName("sideBar");
@@ -18,226 +20,70 @@ var searchHeaderInput2=document.getElementById("searchHeaderInput2");
 var clearSearchHeader2=document.getElementById("clearSearchHeader2");
 var searchIconHeader2=document.getElementById("searchIconHeader2");
 var searchFormHeader2=document.getElementById("searchFormHeader2");
+// let c=5;
 
-document.addEventListener("mouseover",function(e){
-    if(document.contains(parts)==true)
-        {
-            
-            
-            var withinBoundariesParts = e.composedPath().includes(parts);
-            
-        }
-        else
-        {
-            
-            var withinBoundariesParts = false;
-        }
-    if(document.contains(profile)==true)
+
+
+
+if(document.contains(profile))
+{
+profile.getElementsByTagName("ul")[0].classList.add("disNone");
+profile.addEventListener("mouseover",e=>{
+    profile.getElementsByTagName("a")[0].classList.add("icon-active");
+    profile.getElementsByTagName("ul")[0].classList.remove("disNone");
+})
+
+profile.addEventListener("mouseleave",e=>{
+    profile.getElementsByTagName("a")[0].classList.remove("icon-active");
+    profile.getElementsByTagName("ul")[0].classList.add("disNone");
+})
+}
+
+// for(j=0,i=parts.getElementsByClassName("pcParts").length;j<i;j++)
+// {
+//     parts.getElementsByClassName("pcParts")[j].addEventListener("mouseover",e=>{
+//         alert("ggg");
+//     })
+// }
+
+if(document.contains(parts))
+{
+    pcParts.classList.add("disNone");
+
+    for(j=0,i=pcParts.childElementCount;j<i;j++)
     {
-        
-        
-        var withinBoundariesP = e.composedPath().includes(profile);
-        
+        pcParts.getElementsByTagName("ul")[j].classList.add("disNone");
+
+        // console.log(pcParts.children[j])
+
+        pcParts.children[j].addEventListener("mouseover",e=>{
+            // alert("fff");
+            // console.log(e.currentTarget.getElementsByTagName("ul")[0].classList);
+            e.currentTarget.getElementsByTagName("ul")[0].classList.remove("disNone");
+        });
+
+        pcParts.children[j].addEventListener("mouseleave",e=>{
+            // alert("fff");
+            // console.log(e.currentTarget.getElementsByTagName("ul")[0].classList);
+            e.currentTarget.getElementsByTagName("ul")[0].classList.add("disNone");
+        });
+
+        // pcParts.getElementsByTagName("li")[j].addEventListener("mouseleave",e=>{
+        //     this.classList.add("disNone");
+        // });
     }
-    else
-    {
-        
-        var withinBoundariesP = false;
-    }
-    
 
+    parts.addEventListener("mouseover",function(e){
+        this.querySelector(".icon").classList.add("icon-active")
+        // this.querySelector(".icon").classList.remove("icon");
+        pcParts.classList.remove("disNone");
+    })
 
-    if(withinBoundariesP)
-    {
-        if(document.contains(parts)==true)
-        {
-            parts.firstChild.classList.add("icon");
-            parts.firstChild.classList.remove("icon-active");
-
-            parts.style.cssText="--visPCParts: hidden";
-
-            parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-        }
-        
-            
-        profile.firstChild.classList.add("icon-active");
-        profile.firstChild.classList.remove("icon");
-            
-        
-        profile.style.cssText="--vis: visible";
-            
-
-    }
-    else if(withinBoundariesParts)
-    {
-
-        if(document.contains(profile)==true)
-        {
-            profile.firstChild.classList.remove("icon-active");
-            profile.firstChild.classList.add("icon");
-        
-            profile.style.cssText="--vis: hidden";
-        }
-
-        parts.firstChild.classList.remove("icon");
-        parts.firstChild.classList.add("icon-active");
-        parts.style.cssText="--visPCParts: visible";
-        if(e.target.childElementCount!=0)
-        {
-            if(e.target.childNodes[1].className=="ex")
-                {
-                    // alert("ddd");
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: visible";
-                }
-                else if(e.target.childNodes[1].className=="exc")
-                {
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: visisble";
-                    
-                }
-                else if(e.target.childNodes[1].className=="exr")
-                {
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: visible";
-                }
-                else if(e.target.childNodes[1].className=="exs")
-                {
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: visible";
-                    
-                }
-                else if(e.target.childNodes[1].className=="exm")
-                {
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: visible";
-                        
-                }
-                else if(e.target.childNodes[1].className=="exf")
-                {
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: visible";
-                }
-                 else if(e.target.childNodes[1].className=="expo")
-                {
-                    
-                    parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-                    parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: visible";
-                }
-        }
-        else 
-        {
-            if(e.target.className!="ex" && e.target.parentNode.className!="ex")
-            {
-                
-                parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-            }
-            
-            if(e.target.className!="exc" && e.target.parentNode.className!="exc")
-            {
-                
-                parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-            }
-
-            if(e.target.className!="exr" && e.target.parentNode.className!="exr")
-            {
-                    
-                parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-            }
-
-            if(e.target.className!="exs" && e.target.parentNode.className!="exs")
-            {
-                        
-                parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-            }
-
-            if(e.target.className!="exm" && e.target.parentNode.className!="exm")
-            {
-                            
-                parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-            }
-
-            if(e.target.className!="exf" && e.target.parentNode.className!="exf")
-            {
-                                
-                parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-            }
-
-            if(e.target.className!="expo" && e.target.parentNode.className!="expo")
-            {
-                                
-                parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-            }
-        } 
-    }
-    else
-    {
-        if(document.contains(parts)==true)
-        {
-            parts.firstChild.classList.add("icon");
-            parts.firstChild.classList.remove("icon-active");
-    
-            parts.style.cssText="--visPCParts: hidden";
-            parts.lastChild.childNodes[1].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[3].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[5].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[7].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[9].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[11].childNodes[1].style.cssText="--visEX: hidden";
-            parts.lastChild.childNodes[13].childNodes[1].style.cssText="--visEX: hidden";
-        }
-       
-
-        if(document.contains(profile)==true)
-        {
-            profile.firstChild.classList.remove("icon-active");
-            profile.firstChild.classList.add("icon");
-        
-            profile.style.cssText="--vis: hidden";
-        }
-    }
-});
+    parts.addEventListener("mouseleave",function(e){
+        this.querySelector(".icon").classList.remove("icon-active");
+        pcParts.classList.add("disNone");
+    })
+}
 
 searchHeaderInput2.addEventListener("input",function(e){
     if(searchHeaderInput2.value.length!=0)
@@ -272,20 +118,20 @@ header[0].addEventListener("click",function(e){
         bar.classList.add("icon");
         shadow.style.width="0";
         shadow.style.height="0";
-        shadow.style.visibility="hidden";        
+        shadow.style.visibility="hidden";
     }
     else
     {
-        shadow.style.width="100%"; 
-             
-    }  
+        shadow.style.width="100%";
+
+    }
 });
 
 
 bar.addEventListener("click",function()
 {
    let sic=window.getComputedStyle(searchIcon,"::after");
-   
+
 
     if (sideBar[0].style.width=="230px")
     {
@@ -304,7 +150,7 @@ bar.addEventListener("click",function()
         shadow.style.width="99%";
         shadow.style.height="100%";
         shadow.style.visibility="visible";
-        
+
         shadow.addEventListener("click",function(e){
             sideBar[0].style.width="0px";
             bar.classList.remove("icon-active");
@@ -314,7 +160,7 @@ bar.addEventListener("click",function()
             shadow.style.visibility="hidden";
         });
 
-       
+
     }
 });
 
@@ -323,22 +169,22 @@ bar.addEventListener("click",function()
 searchSide.addEventListener("input",function(e){
     if(searchSide.value.length>0)
     {
-        
+
         clearSearchSide.classList.remove("p-hide");
         clearSearchSide.classList.add("p-active");
-        
+
     }
     else
     {
         clearSearchSide.classList.remove("p-active");
         clearSearchSide.classList.add("p-hide");
     }
-    
-    
+
+
 });
 
 clearSearchSide.addEventListener("click",function(e){
-    
+
     searchSide.value="";
     clearSearchSide.classList.remove("p-active");
     clearSearchSide.classList.add("p-hide");
