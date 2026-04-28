@@ -3,13 +3,13 @@ header{
     padding: 10px 0px 45px 0px;
     position: sticky;
     top: 0;
-   
+
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: baseline;
+    justify-content: space-evenly;
     padding-bottom: 0;
     margin-bottom: 0;
-    /* gap: 0; */
+    gap: 3rem;
     z-index: 2;
      width: 100%;
      overflow: hidden;
@@ -33,7 +33,7 @@ header{
 footer{
     background-color: black;
     padding: 20px 0 20px 0 ;
-    
+
     bottom: 0;
     width: 100%;
    overflow: hidden;
@@ -46,7 +46,7 @@ body{
 }
 
 /* #navLinksLeft li{
-    
+
 } */
 
 :root{
@@ -57,9 +57,12 @@ body{
 }
 
  #navLinksLeft {
-    
+
    display: flex;
-   font-size: 1.18rem;
+   /* font-size: 1.18rem; */
+   font-size: clamp(0.9rem, 0.8vw, 5rem);
+
+
    /* margin-bottom: 0;
     margin-left: 200px; */
 }
@@ -68,7 +71,7 @@ body{
     display: inline;
     float: left;
     margin-bottom: 0;
-   
+
 }  */
 
 
@@ -76,7 +79,7 @@ body{
 
 
 #navLinksLeft a:not(.icon,.icon-active,.profMen a){
-    
+
     border: 1px solid gray;
     padding: 15px 15px 15px 15px;
     margin: 10px;
@@ -88,7 +91,7 @@ body{
 
 
 #navLinksLeft .icon{
-  
+
     text-decoration: none;
     color: rgb(255, 255, 255);
     padding: 10rem 1rem;
@@ -111,21 +114,19 @@ body{
     transition: 0.3s;
 }
 
-
-
 .profMen{
     width: 150px;
     position: fixed;
     background-color: white;
-    margin-top:  31px;
+    margin-top:  24px;
     padding-left: 0;
-    visibility: var(--vis);
+    /* visibility: var(--vis); */
 }
 
 .profMen li{
     font-size: 1.2rem;
     text-align: right;
-    
+
 }
 
 .profMen a{
@@ -139,7 +140,7 @@ body{
     text-decoration: none;
     color: rgb(255, 254, 254);
     background-color: rgb(191, 191, 191);
-    
+
 }
 
 
@@ -170,38 +171,60 @@ body{
 
 
 /* #navLinksRight{
-    
+
     margin-right: 20%;
     margin-left: auto;
 }*/
 
+#navLinksRight{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0;
+    /* gap: 1rem; */
+}
+
 #navLinksRight li:not(.pcParts li){
     display: inline;
     float: right;
+    margin: 0 auto;
     margin-bottom: 0;
-} 
+}
 
 #navLinksRight .icon{
-    padding: 2rem 18px;
-    padding-bottom: 2.1rem;
+    padding: 10rem 10px;
+    /* padding: clamp(2.3rem, 20vw, 5rem) 18px; */
+
+    /* padding-bottom: 2.1rem; */
+    padding-bottom: clamp(2.3rem, 10vw, 6rem);
     text-decoration: none;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    font-size: 1.27rem;
+    /* font-size: 1.27rem; */
+   font-size: clamp(0.9rem, 1vw, 5rem);
+
     margin-bottom: 0;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     transition: 0.3s;
 }
 
+#navLinksRight .icon i{
+   font-size: clamp(0.6rem, 0.3vw, 2rem);
+
+}
+
 #navLinksRight .icon-active{
-    padding: 2rem 18px;
-    padding-bottom: 2.1rem;
+    padding: 7rem 10px;
+    /* padding-bottom: 2.1rem; */
+    /* padding-bottom: clamp(2.3rem, 0.8vw, 5rem); */
+    padding-bottom: clamp(2.3rem, 10vw, 6rem);
     text-decoration: none;
     color: rgb(255, 255, 255);
     background-color: rgba(191, 191, 191, 0.49);
     cursor: pointer;
-    font-size: 1.27rem;
-    font-weight: bolder;
+    /* font-size: 1.27rem; */
+   font-size: clamp(0.9rem, 1vw, 5rem);
+
+    /* font-weight: bolder; */
     transition: 0.3s;
 }
 
@@ -211,6 +234,7 @@ body{
     position: absolute;
     display: block;
     top: 77px;
+
     margin-left: 4.3rem;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
@@ -220,24 +244,38 @@ body{
 
 #navLinksRight .imageLink{
     padding-top: 100%;
+    /* padding-top: clamp(20%, 0.8vw, 100%); */
+
     padding-left: 20px;
+    /* padding-left: clamp(5px, 0.8vw, 60px); */
+
     padding-right:20px;
+    /* padding-right: clamp(5px, 0.8vw, 60px); */
+
     padding-bottom: 18px;
+    /* padding-bottom: clamp(5px, 0.8vw, 60px); */
     /* margin: auto; */
     /* padding-left: 20px;
     padding-right: 20px; */
 }
 
+#navLinksRight .imageLink img{
+    width: clamp(30px, 5vw, 500px);
+    height: clamp(36px, 1vw, 125px);
+    /* height: 36px; */
+}
+
 #navLinksRight a:hover:not(.imageLink,.icon-active){
     text-decoration: none;
     color: rgb(255, 254, 254);
+   /* font-size: clamp(0.9rem, 1vw, 5rem); */
     background-color: rgb(191, 191, 191);
 }
 
-#navLinksRight a:visited:not(.imageLink){
+#navLinksRight a:visited:not(.imageLink,.pcParts li a){
     text-decoration: none;
     color: rgb(255, 255, 255);
-} 
+}
 
 .pcParts{
     position: fixed;
@@ -245,7 +283,7 @@ body{
     width: 200px;
     background-color: white;
     padding-left: 0;
-    visibility: var(--visPCParts);
+    /* visibility: var(--visPCParts); */
     padding-right: 5px;
 }
 
@@ -257,15 +295,41 @@ body{
     padding-right: 5px;
 }
 
+
+.pcParts li a{
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: right;
+    text-decoration: none;
+    padding: 0.7rem 0 0.2rem 9.85rem;
+    color: black;
+}
+
+.pcParts li a:hover{
+    text-decoration: none;
+
+}
+
+.pcParts li a:visited{
+    text-decoration: none;
+    color: black;
+
+}
+
+.pcParts li a:active{
+    color: black;
+    text-decoration: none;
+}
+
 .pcParts li:hover{
-    
-    
+
+
     background-color: rgb(191, 191, 191);
 }
 
-.pcParts li::before{
+.pcParts li a::before{
     content: "◄";
-    font-size: 0.5rem; 
+    font-size: 0.5rem;
     position: absolute;
     left: 10px;
     margin-top: 5px;
@@ -273,7 +337,7 @@ body{
 
 .pcParts li:not(:has(ul)):before{
     content: "";
-    font-size: 0.5rem; 
+    font-size: 0.5rem;
     position: absolute;
     left: 10px;
     margin-top: 5px;
@@ -288,12 +352,12 @@ body{
     margin-left: -230px;
     top: 81px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 /* .ex li{
-    
-    
+
+
 } */
 
 
@@ -309,7 +373,7 @@ body{
     margin-left: -230px;
     top: 112px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .exc li::before{
@@ -323,7 +387,7 @@ body{
     margin-left: -230px;
     top: 141px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .exr li::before{
@@ -337,7 +401,7 @@ body{
     margin-left: -230px;
     top: 171px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .exs li::before{
@@ -351,7 +415,7 @@ body{
     margin-left: -230px;
     top: 201px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .exm li::before{
@@ -365,7 +429,7 @@ body{
     margin-left: -230px;
     top: 231px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .exf li::before{
@@ -379,7 +443,7 @@ body{
     margin-left: -230px;
     top: 261px;
     padding-left: 0;
-    visibility: var(--visEX);
+    /* visibility: var(--visEX); */
 }
 
 .expo li::before{
@@ -389,37 +453,37 @@ body{
 
 
 /* .pcParts .gpu{
-    font-size: 0.6rem; 
-    position: fixed; 
+    font-size: 0.6rem;
+    position: fixed;
     margin-left:-105px
 }
 
 .pcParts .cpu{
-    font-size: 0.6rem; 
-    position: fixed; 
+    font-size: 0.6rem;
+    position: fixed;
     margin-left:-122px;
-    
+
 }
 
 .pcParts .ram{
-    font-size: 0.6rem; 
-    position: fixed; 
+    font-size: 0.6rem;
+    position: fixed;
     margin-left:-133px;
-    
+
 }
 
 .pcParts .moth{
-    font-size: 0.6rem; 
-    position: fixed; 
+    font-size: 0.6rem;
+    position: fixed;
     margin-left:-127px;
-    
+
 }
 
 .pcParts .pws{
-    font-size: 0.6rem; 
-    position: fixed; 
+    font-size: 0.6rem;
+    position: fixed;
     margin-left:-113px;
-    
+
 } */
 
 
@@ -431,7 +495,7 @@ body{
     /* padding: 50px 150px; */
     padding-bottom: 100%;
     max-height: calc(100vh - 4rem);
-    
+
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-gutter: auto;
@@ -440,7 +504,7 @@ body{
 }
 
 .searchBar{
-    
+
     position: relative;
     left: 0;
     padding-right: 30px;
@@ -606,12 +670,26 @@ body{
     outline: none;
 }
 
-/* #searchHeader2{
-    display: inline;
-    background-color: gray;
+
+#searchHeader2{
+        /* width: clamp(5%,10vw,15%); */
+        /* width: 25rem; */
+        /* width: 5%; */
+        /* width: min(15%,5%); */
+        width: 15%;
+}
+
+/*
+#searchHeader2 li{
+        width: clamp(20%,10vw,95%);
+
+}
+
+#searchFormHeader2{
+            width: clamp(20%,10vw,95%);
 } */
 
-#searchHeader2 i:not(#searchIconHeader2){
+#searchHeader2 i:not(#searchIconHeader2 ,#clearSearchHeader2){
     position: fixed;
     margin-left: -17px;
     margin-top: 1px;
@@ -631,14 +709,15 @@ body{
     /* border-radius: 2px; */
     font-size: 25px;
     cursor: pointer;
-    
+
     color: #b9b9b9;
     background: rgb(143, 143, 143);
     /* visibility: var(--visI); */
-    padding-right: 2px;
+    /* padding-right: 2px; */
     padding-left: 2px;
     padding-bottom: 5px;
-    padding-top: 5px;
+    padding-top: 6px;
+    margin-left:-5px ;
     border-radius: 5px 0 0 5px ;
 }
 /* #searchHeader2 form{
@@ -648,11 +727,13 @@ body{
 #searchHeaderInput2{
     /* position: absolute; */
     /* padding-right: 200px; */
-    padding-left: 26px;
+    /* margin-right: 100px; */
+    padding-left: 28px;
     padding-right: 20px;
     color: rgb(193, 193, 193);
     /* width: 225px; */
-    width: 400px;
+    width: 95%;
+    /* width: clamp(20%,15vw,95%); */
     font-size: 1.6rem;
     background-color: rgb(79, 79, 79);
     border: 2px solid rgb(132, 132, 132);
@@ -671,6 +752,73 @@ body{
     /* font-size: 50px; */
 }
 
+#clearSearchHeader2{
+position: relative;
+
+    /* top: 35px;
+    right: 370px; */
+    bottom: 25px;
+    left: 32px;
+    margin-left: 95%;
+    margin-bottom: 0;
+    /* margin-top: 20px; */
+    /* margin-left: clamp(50px,5vw,350px); */
+    z-index: 2;
+    color: #719ECE;
+    cursor: pointer;
+     visibility: var(--visI);
+    /* padding-left: 150px; */
+}
+
+@media only screen and (min-width: 1024px) {
+    /* #searchHeaderInput2{
+        width: 200px;
+    } */
+
+
+
+#navLinksLeft a:not(.icon,.icon-active,.profMen a){
+
+    border: 1px solid gray;
+    padding: 15px 15px 15px 15px;
+    margin: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+}
+
+
+
+#navLinksLeft .icon{
+
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding: 10rem 1rem;
+    padding-bottom: 2.05rem;
+    cursor: pointer;
+    margin: 0;
+    margin-bottom: 0;
+    transition: 0.3s;
+}
+
+#navLinksLeft .icon-active{
+    margin-bottom: 0;
+    margin: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background-color: rgba(191, 191, 191, 0.49);
+    padding: 10rem 1rem;
+    padding-bottom: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+}
+
+/* @media only screen and (max-width: 1024px) {
+
+} */
+
 /* @media(max-width: 1509px){ */
     /* #searchHeaderInput2{ */
     /* position: absolute; */
@@ -683,7 +831,7 @@ body{
     background-color: rgb(79, 79, 79);
     border: 2px solid rgb(132, 132, 132);
     border-radius: 5px; */
-    
+
     /* caret-color: red; */
     /* margin-left: 250px; */
 /* }
@@ -702,7 +850,7 @@ body{
             background-color: rgb(79, 79, 79);
             border: 2px solid rgb(132, 132, 132);
             border-radius: 5px; */
-            
+
             /* caret-color: red; */
             /* margin-left: 250px; */
     /* }
@@ -711,65 +859,65 @@ body{
 
  /* @media (max-width: 7680px) {
     #navLinksRight{
-        
+
         margin-right: 20vw;
-        
+
     }
 
     #navLinksLeft {
-        
+
        margin-left: 15vw;
-       
-       
-       
+
+
+
     }
-} 
+}
 
  @media (max-width: 1920px) {
     #navLinksRight{
-        
+
         margin-right: 10rem;
-        
+
     }
 
     #navLinksLeft {
-        
+
        margin-left: 10rem;
-       
-       
-       
+
+
+
     }
-} 
+}
 
  @media (max-width: 1280px) {
     #navLinksRight{
-        
+
         margin-right: auto;
-        
+
     }
 
     #navLinksLeft {
-        
+
        margin-left: auto;
-       
-       
-       
+
+
+
     }
-} 
+}
 
 @media (max-width: 991px) {
     #navLinksRight{
-        
+
         margin-right: auto;
-        
+
     }
 
     #navLinksLeft {
-        
+
        margin-left: auto;
-       
-       
-       
+
+
+
     }
 } */
 
@@ -785,7 +933,7 @@ body{
     margin: 10px;
     text-decoration: none;
     color: rgb(255, 255, 255);
-    
+
     transition: 0.3s;
 }
 
@@ -814,8 +962,8 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-   
-    
+
+
     height: 100%;
     overflow-x: hidden;
 }
@@ -826,9 +974,9 @@ body{
     flex-direction: column;
     background-color: white !important;
     margin-bottom:5%;
-    
+
     /* border: 90px solid white !important; */
-   
+
 }
 
 .formHeader h1{
@@ -847,7 +995,7 @@ hr{
     width: 450px;
    background-color: white;
    margin: 0;
-   
+
 }
 
 
@@ -916,7 +1064,7 @@ hr{
 }
 
 #Login >label{
-    
+
     direction: rtl;
 }
 
@@ -931,7 +1079,7 @@ hr{
 
 .textReq{
     color: red;
-    
+
 }
 
 #LoginBtn{
@@ -950,12 +1098,12 @@ hr{
 
 #LoginBtn:hover{
     cursor: pointer;
-    
+
 }
 
 #LoginBtn:active{
     background-image: linear-gradient(to right,rgba(14, 14, 14, 0.509),rgb(10, 10, 10));
-    
+
 }
 
 .btnDiv{
@@ -969,13 +1117,13 @@ hr{
     margin-top: 10px;
     display: flex;
     justify-content: space-around;
-    
+
 }
 
 .LoginHelp a{
     text-decoration: none;
     font-weight: bold;
-}    
+}
 
 .LoginHelp a:visited{
     text-decoration: none;
@@ -992,7 +1140,7 @@ hr{
     width: 450px;
    background-color: white;
    margin: 0;
-   
+
 }
 
 
@@ -1016,8 +1164,8 @@ hr{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-   
-    
+
+
     height: 100%;
     overflow-x: hidden;
 }
@@ -1028,9 +1176,9 @@ hr{
     flex-direction: column;
     background-color: white !important;
     margin-bottom:5%;
-    
+
     /* border: 90px solid white !important; */
-   
+
 }
 
 .formHeader h1{
@@ -1120,7 +1268,7 @@ hr{
 }
 
 #Register >label{
-    
+
     direction: rtl;
 }
 
@@ -1135,7 +1283,7 @@ hr{
 
 .textReq{
     color: red;
-    
+
 }
 
 #RegisterBtn{
@@ -1154,12 +1302,12 @@ hr{
 
 #RegisterBtn:hover{
     cursor: pointer;
-    
+
 }
 
 #RegisterBtn:active{
     background-image: linear-gradient(to right,rgba(14, 14, 14, 0.509),rgb(10, 10, 10));
-    
+
 }
 
 .btnDiv{
@@ -1174,13 +1322,13 @@ hr{
     display: block;
     text-align: center;
     /* justify-content: space-around; */
-    
+
 }
 
 .RegisterHelp a{
     text-decoration: none;
     font-weight: bold;
-}    
+}
 
 .RegisterHelp a:visited{
     text-decoration: none;
@@ -1188,7 +1336,7 @@ hr{
 
 .RegisterHelp p{
     display: inline;
-} 
+}
 
 /*Register Form Ends*/
 
@@ -1236,12 +1384,13 @@ hr{
 /*Datat Entry Menu Page*/
 
 .deMenu{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4,auto);
     justify-content: center;
     /* align-items: center; */
     gap: 75px;
     margin: 100px;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
 }
 .deMenu button{
     margin: 0px;
@@ -1261,4 +1410,12 @@ hr{
 }
 .deMenu button:hover{
     cursor: pointer;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.disNone{
+    display: none;
 }
